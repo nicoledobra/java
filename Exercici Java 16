@@ -1,1 +1,7 @@
-
+public class Exercise2
+{
+   public static void main ( String[] args ) {
+     int a=8;
+     int b=7;
+     System.out.print ("The sum of 8 and 7 is 15");
+}
