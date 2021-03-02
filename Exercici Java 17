@@ -1,1 +1,12 @@
-
+public class Exercise3
+{
+   public static void main ( String[] args ) {
+     System.out.println( "Please, insert first number: " );
+     String first number = a();
+     int a=sc.nextInt();
+     System.out.println( "Please, insert second number: " );
+     String second number = b();
+     int b=sc.nextInt();
+     sum=a+b
+     System.out.print ("The sum of" + a + "and" + b + "is" + sum);}
+}
