@@ -1,13 +1,13 @@
-  import java.util.Scanner;
-  public class Exercise4{
-   public static void main ( String[] args ) {
-     Scanner sc = new Scanner(System.in);
-     int s;
-     int a;
-     System.out.println( "Please, insert your name: " );
-     s = sc.nextInt();
-     System.out.println( "Please, insert your age: " );
-     a = sc.nextInt();
-     System.out.println("Hi, "+ s + "." + "You are " + a + " years old.");
+ import java.util.Scanner;
+ public class Exercise4{
+     public static void main ( String[] args ) {
+       	Scanner sc = new Scanner(System.in);
+	   	int s;
+     	int a;
+     	System.out.println( "Please, insert your name: " );
+     	s = sc.nextInt();
+     	System.out.println( "Please, insert your age: " );
+     	a = sc.nextInt();
+     	System.out.println("Hi, "+ s + ". " + "You are "+ a +" years old.");
      }
-   }
+  }
