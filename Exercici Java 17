@@ -1,12 +1,11 @@
 import java.util.Scanner;
-public class Exercise3
+public class Exercise5
 {
    public static void main ( String[] args ) {
      Scanner sc = new Scanner(System.in);
-     int a, b;
-     System.out.println( "Please, insert first number: " );
-     a = sc.nextInt();
-     System.out.println( "Please, insert second number: " );
-     b = sc.nextInt();
-     System.out.print ( "The sum of " + a + " and " + b + " is " + (a+b) );}
+     float radi;
+     final double PI = 3.1416;
+     System.out.println( "Please, insert the radius of a circle: " );
+     radi = sc.nextFloat();
+     System.out.print ( "The area of a circle of radius " + radi + " is " + (PI*radi*radi) );}
 }
