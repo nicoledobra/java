@@ -1,0 +1,13 @@
+import java.util.Scanner;
+
+public class Exercise5
+{
+    
+   public static void main ( String[] args ) {
+     Scanner sc = new Scanner(System.in);
+     float radi;
+     final double PI = 3.141592;
+     System.out.println( "Please, insert the radius of a circle: " );
+     radi = sc.nextInt();
+     System.out.print ( "The perimeter of a circle of radius " + radi + " is " + (2*PI*radi) );}
+}
