@@ -1,0 +1,23 @@
+import java.util.Scanner;
+
+public class Fill1 {
+
+    public static void main(String[] args) {
+      	float a, b;
+        Scanner sc = new Scanner(System.in);
+
+	      System.out.println("Please, insert the first value ");
+      	a = sc.nextFloat();
+      	System.out.println("Please, insert the second value: ");
+      	b = sc.nextFloat();
+
+	if ( i > 0 ) {
+
+		System.out.println("The first value is greater than the second");
+	}
+	else {
+		System.out.println("The second value is greater or equal than the first");
+	}	
+    }
+
+}
