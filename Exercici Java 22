@@ -1,0 +1,20 @@
+import java.util.Scanner;
+
+public class Exercise7 {
+  public static void main(String[] args) {
+    int a, b;
+    Scanner sc = new Scanner(System.in);
+    
+    System.out.println("Please, insert the first value: ");
+    a = sc.nextInt();
+    System.out.println("Please, insert the second value: ");
+    b = sc.nextInt();
+    if ( a == b ) {
+      System.out.println("The two values are equal");
+	}
+	else {
+		System.out.println("The two values are different");
+    }	
+  }
+
+}
