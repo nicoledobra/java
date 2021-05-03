@@ -1,0 +1,21 @@
+import java.util.Scanner;
+
+public class Exercise8 {
+  public static void main(String[] args) {
+    int a;
+    Scanner sc = new Scanner(System.in);
+    
+    System.out.println("Please, insert an integer number: ");
+    a = sc.nextInt();
+    if ( a > 0 ) {
+      System.out.println("The given value is positive.");
+	}
+    else if ( a == 0 ) {
+      System.out.println("The given value is zero.");
+    }
+	else {
+		System.out.println("The given value is negative.");
+    }	
+  }
+
+}
