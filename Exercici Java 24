@@ -1,0 +1,20 @@
+import java.util.Scanner;
+
+public class Exercise9 {
+  public static void main(String[] args) {
+    int a, b;
+    Scanner sc = new Scanner(System.in);
+    
+    System.out.println ("Please, insert the first value: ");
+    a = sc.nextInt();
+    System.out.println ("Please, insert the second value: ");
+    b = sc.nextInt();
+    if ( a % b == 0 ) {
+      System.out.println (a + " is multiple of " + b);
+	}
+	else {
+		System.out.println (a + " is not multiple of " + b);
+    }	
+  }
+
+}
