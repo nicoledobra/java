@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Exercise9 {
+public class Exercise10 {
   public static void main(String[] args) {
     int a, b, c;
     Scanner sc = new Scanner(System.in);
@@ -12,22 +12,22 @@ public class Exercise9 {
     System.out.println ("Please, insert the third value: ");
     c = sc.nextInt();
     if ( a > b && a > c && b > c ) {
-      System.out.println ("The ordered numbers are: " + a + ">" + b +">" c);
+      System.out.println ("The ordered numbers are: " + a + ">" + b +">" + c);
 	}
 	else if ( a > c && a > b && c > b  ) {
-      System.out.println ("The ordered numbers are: " + a + ">" + c +">" b);
+      System.out.println ("The ordered numbers are: " + a + ">" + c +">" + b);
 	}
     else if ( b > a && b > c && a > c) {
-      System.out.println ("The ordered numbers are: " + b + ">" + a +">" c);
+      System.out.println ("The ordered numbers are: " + b + ">" + a +">" + c);
 	}
     else if ( b > c && b > a && c > a ) {
-      System.out.println ("The ordered numbers are: " + b + ">" + c +">" a);
+      System.out.println ("The ordered numbers are: " + b + ">" + c +">" + a);
 	}
     else if ( c > a && c > b && a > b ) {
-      System.out.println ("The ordered numbers are: " + c + ">" + a +">" b);
+      System.out.println ("The ordered numbers are: " + c + ">" + a +">" + b);
 	}
     else {
-      System.out.println ("The ordered numbers are: " + c + ">" + b +">" a);
+      System.out.println ("The ordered numbers are: " + c + ">" + b +">" + a);
 	}
   }
 
