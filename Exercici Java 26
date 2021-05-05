@@ -1,1 +1,31 @@
+import java.util.Scanner;
 
+public class Exercise11 {
+  public static void main(String[] args) {
+    float a;
+    Scanner sc = new Scanner(System.in);
+    
+    System.out.println ("Please, insert a numeric value: ");
+    a = sc.nextFloat();
+    
+    if ( 9 >= a && a >= 10 ) {
+      System.out.println ("Your corresponding academic grading is: " + "A");
+	}
+	else if ( 8 >= a && a > 9 ) {
+      System.out.println ("Your corresponding academic grading is: " + "B");
+	}
+    else if ( 7 >= a && a > 8 ) {
+      System.out.println ("Your corresponding academic grading is: " + "c");
+	}
+    else if ( 6 >= a && a > 7 ) {
+      System.out.println ("Your corresponding academic grading is: " + "D");
+	}
+    else if ( 5 >= a && a > 6 ) {
+      System.out.println ("Your corresponding academic grading is: " + "E");
+	}
+    else if ( 0 >= a && a > 5 ) {
+      System.out.println ("Your corresponding academic grading is: " + "F");
+	}
+  }
+
+}
