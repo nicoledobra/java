@@ -7,25 +7,32 @@ public class Exercise11 {
     
     System.out.println ("Please, insert a numeric value: ");
     a = sc.nextFloat();
-    
-    if ( 9 >= a && a >= 10 ) {
-      System.out.println ("Your corresponding academic grading is: " + "A");
-	}
-	else if ( 8 >= a && a > 9 ) {
-      System.out.println ("Your corresponding academic grading is: " + "B");
-	}
-    else if ( 7 >= a && a > 8 ) {
-      System.out.println ("Your corresponding academic grading is: " + "C");
-	}
-    else if ( 6 >= a && a > 7 ) {
-      System.out.println ("Your corresponding academic grading is: " + "D");
-	}
-    else if ( 5 >= a && a > 6 ) {
-      System.out.println ("Your corresponding academic grading is: " + "E");
-	}
-    else if ( 0 >= a && a > 5 ) {
-      System.out.println ("Your corresponding academic grading is: " + "F");
-	}
+    for ( a=0; a<=10; a++ ){
+      if ( 9 >= a && a >= 10 ) {
+      	System.out.println ("Your corresponding academic grading is: ");
+      	System.out.println ("A");
+		}
+      else if ( 8 >= a && a >= 8.9 ) {
+      	System.out.println ("Your corresponding academic grading is: ");
+      	System.out.println ("B");
+		}
+      else if ( 7 >= a && a >= 7.9 ) {
+      	System.out.println ("Your corresponding academic grading is: ");
+      	System.out.println ("C");
+		}
+      else if ( 6 >= a && a >= 6.9 ) {
+      	System.out.println ("Your corresponding academic grading is: ");
+      	System.out.println ("D");
+		}
+      else if ( 5 >= a && a >= 5.9 ) {
+      	System.out.println ("Your corresponding academic grading is: ");
+      	System.out.println ("E");
+		}
+      else {
+      	System.out.println ("Your corresponding academic grading is: ");
+      	System.out.println ("F");
+		}
+    }
   }
 
 }
