@@ -15,7 +15,7 @@ public class Exercise11 {
       System.out.println ("Your corresponding academic grading is: " + "B");
 	}
     else if ( 7 >= a && a > 8 ) {
-      System.out.println ("Your corresponding academic grading is: " + "c");
+      System.out.println ("Your corresponding academic grading is: " + "C");
 	}
     else if ( 6 >= a && a > 7 ) {
       System.out.println ("Your corresponding academic grading is: " + "D");
