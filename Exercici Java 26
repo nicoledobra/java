@@ -9,23 +9,23 @@ public class Exercise11 {
     a = sc.nextFloat();
     if ( a<=10 ){
  
-      if ( 9 >= a && a <= 10 ) {
+      if ( 9 <= a && a <= 10 ) {
       	System.out.println ("Your corresponding academic grading is: ");
       	System.out.println ("A");
 		}
-      else if ( 8 >= a && a <= 8.9 ) {
+      else if ( 8 <= a && a <= 8.9 ) {
       	System.out.println ("Your corresponding academic grading is: ");
       	System.out.println ("B");
 		}
-      else if ( 7 >= a && a <= 7.9 ) {
+      else if ( 7 <= a && a <= 7.9 ) {
       	System.out.println ("Your corresponding academic grading is: ");
       	System.out.println ("C");
 		}
-      else if ( 6 >= a && a <= 6.9 ) {
+      else if ( 6 <= a && a <= 6.9 ) {
       	System.out.println ("Your corresponding academic grading is: ");
       	System.out.println ("D");
 		}
-      else if ( 5 >= a && a <= 5.9 ) {
+      else if ( 5 <= a && a <= 5.9 ) {
       	System.out.println ("Your corresponding academic grading is: ");
       	System.out.println ("E");
 		}
