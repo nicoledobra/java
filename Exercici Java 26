@@ -2,11 +2,12 @@ import java.util.Scanner;
 
 public class Exercise11 {
   public static void main(String[] args) {
-    float a;
+    float a=0;
     Scanner sc = new Scanner(System.in);
     
     System.out.println ("Please, insert a numeric value: ");
     a = sc.nextFloat();
+    if ( a<=10 ){
  
       if ( 9 >= a && a <= 10 ) {
       	System.out.println ("Your corresponding academic grading is: ");
@@ -32,6 +33,11 @@ public class Exercise11 {
       	System.out.println ("Your corresponding academic grading is: ");
       	System.out.println ("F");
 		}
+    }
+    else{
+      System.out.println ("Please, insert a numeric value: ");
+      
+    }
   
   }
 
