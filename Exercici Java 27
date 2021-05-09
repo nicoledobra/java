@@ -1,1 +1,28 @@
+import java.util.Scanner;
 
+public class Exercise12 {
+  public static void main(String[] args) {
+    int a;
+    int b;
+    int c;
+    Scanner sc = new Scanner(System.in);
+    
+    System.out.println ("Insert day: ");
+    a = sc.nextInt();
+    System.out.println ("Insert month: ");
+    b = sc.nextInt();
+    System.out.println ("Insert year: ");
+    c = sc.nextInt();
+   
+ 
+      if ( b > 12 ) {
+      	System.out.println ("Wrong month value.");
+        }
+      else if ( a > 30 ) {
+      	System.out.println ("Wrong day value.");
+        }
+      else{
+        System.out.println ("The given date is " + a + "/" + b + "/" + c);
+        }
+  }
+}
