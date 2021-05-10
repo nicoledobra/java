@@ -7,12 +7,16 @@ public class Loop1 {
     
     System.out.println ("Insert an integer number: ");
     value = sc.nextInt();
-    if ( value >= 0 ){
+    while ( value >= 0 ){
       System.out.println ("The square value of the given number is " + (value^2));
+      if( value < 0 ){
+        break;
+      }
+      value++;
+    
     }
-    else{
-      return;
-    }
+     
+    System.out.println ( " " );
 
   }
 }
