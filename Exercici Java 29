@@ -31,6 +31,7 @@ public class Loop2 {
     System.out.println ("Insert an integer number: ");
     value = sc.nextInt();
     while(value != 0){
+    value = sc.nextInt();
       if ( value % 2 == 0 ){
         System.out.println ("The given number is even.");
       }
