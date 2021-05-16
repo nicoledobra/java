@@ -14,11 +14,9 @@ public class Loop2 {
       Scanner sc = new Scanner(System.in);
       System.out.println ("Insert an integer number: ");
       n = sc.nextInt();
-      if ( n == 0 ) {
-        System.out.println (" ");
-      }
-      else{
-        isEven(2);
+      while ( n != 0 ) {
+        System.out.println (isEven());
+	n = sc.nextInt();
       }
     }
 }
