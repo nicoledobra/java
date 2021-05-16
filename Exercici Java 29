@@ -1,43 +1,24 @@
 import java.util.Scanner;
 
 public class Loop2 {
-  public static void main(String[] args) {
-    int value;
-    Scanner sc = new Scanner(System.in);
-    
-    System.out.println ("Insert an integer number: ");
-    value = sc.nextInt();
-    if ( value % 2 = 0 ){
-      System.out.println ("The given number is even.");
-      }
-     else if( value == 0 ){
-      break;
-      }
-     else{
-      System.out.println ("The given number is odd.");
-     }
-  }
-}
-
-
-
-import java.util.Scanner;
-
-public class Loop2 {
-  public static void main(String[] args) {
-    int value;
-    Scanner sc = new Scanner(System.in);
-    
-    System.out.println ("Insert an integer number: ");
-    value = sc.nextInt();
-    while(value != 0){
-    value = sc.nextInt();
-      if ( value % 2 == 0 ){
-        System.out.println ("The given number is even.");
+	public static void isEven(int n){
+        if (n % 2 == 0){
+            System.out.println("The given number is even.");
+        }
+        else {
+            System.out.println("The given number is odd.");
+        }
+    }
+    public static void main(String[] args) {
+      int n;
+      Scanner sc = new Scanner(System.in);
+      System.out.println ("Insert an integer number: ");
+      n = sc.nextInt();
+      if ( n == 0 ) {
+        System.out.println (" ");
       }
       else{
-        System.out.println ("The given number is odd.");
+        isEven();
       }
     }
-  }
 }
