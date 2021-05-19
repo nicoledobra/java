@@ -15,8 +15,10 @@ public class Loop2 {
       System.out.println ("Insert an integer number: ");
       n = sc.nextInt();
       while ( n != 0 ) {
-        System.out.println (isEven());
-	n = sc.nextInt();
+        isEven(n);
+        System.out.println ("Insert an integer number: ");
+        n = sc.nextInt();
       }
+      
     }
 }
