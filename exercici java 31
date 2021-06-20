@@ -17,11 +17,11 @@ public class Loop4{
            um ++;
            System.out.print("Insert an integer number: ");
            num = sc.nextInt();
-           if(um%2==0){
-           cont=um+1;
+           if(num%2==0){
+           cont ++;
            }
            else{
-           conta=um+1;
+           conta ++;
            }
        }
        System.out.println("The total of even numbers read is" + cont );
