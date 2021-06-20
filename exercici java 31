@@ -9,8 +9,8 @@ public class Loop4{
        Scanner sc = new Scanner(System.in);
        int um = 0;
        int num;
-       int cont;
-       int conta.
+       int cont = 0;
+       int conta = 0;
        System.out.print("Insert an integer number: ");
        num = sc.nextInt();
        while (num!=0){
