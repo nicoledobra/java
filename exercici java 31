@@ -1,0 +1,30 @@
+package com.company;
+
+import java.util.Scanner;
+
+public class Loop4{
+
+   public static void main(String[] args) {
+  // write your code here
+       Scanner sc = new Scanner(System.in);
+       int um = 0;
+       int num;
+       int cont;
+       int conta.
+       System.out.print("Insert an integer number: ");
+       num = sc.nextInt();
+       while (num!=0){
+           um ++;
+           System.out.print("Insert an integer number: ");
+           num = sc.nextInt();
+           if(um%2==0){
+           cont=um+1;
+           }
+           else{
+           conta=um+1;
+           }
+       }
+       System.out.println("The total of even numbers read is" + cont );
+       System.out.println("The total of odd numbers read is" + conta );
+   }
+}
