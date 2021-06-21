@@ -3,28 +3,39 @@ package com.company;
 import java.util.Scanner;
 
 public class Loop4{
+  public static boolean isEven(int num){
+		if (num % 2 == 0){
+			return true;
+		} else {
+			return false;
+		}
+	}
 
    public static void main(String[] args) {
   // write your code here
+     
        Scanner sc = new Scanner(System.in);
        int um = 0;
        int num;
        int cont = 0;
        int conta = 0;
-       System.out.print("Insert an integer number: ");
+     
+       System.out.println("Insert an integer number: ");
        num = sc.nextInt();
+     
        while (num!=0){
            um ++;
-           System.out.print("Insert an integer number: ");
+           System.out.println("Insert an integer number: ");
            num = sc.nextInt();
-           if(num%2==0){
+           if(isEven(num)){
            cont ++;
            }
            else{
            conta ++;
            }
        }
-       System.out.println("The total of even numbers read is" + cont );
-       System.out.println("The total of odd numbers read is" + conta );
+     
+       System.out.println("The total of even numbers read is " + cont );
+       System.out.println("The total of odd numbers read is " + conta );
    }
 }
