@@ -1,0 +1,27 @@
+import java.util.Random;
+import java.util.Scanner;
+// Online IDE - Code Editor, Compiler, Interpreter
+
+public class Main
+{
+    public static void main(String[] args) {
+        Random rand = new Random ();
+        Scanner sc = new Scanner ( System.in );
+        int i=rand.nextInt(100)+1;
+     System.out.print("Insert an integer number: ");
+        int num=sc.nextInt();
+        while(num!=i){
+            if(num>i){
+                System.out.println("You missed");
+                 System.out.println("The random number is lesser than " + num);
+            }
+            if(num<i){
+               System.out.println("You missed");
+                 System.out.println("The random number is greater than " + num);  
+            }
+            System.out.print("Insert an integer number: ");
+            num=sc.nextInt(); 
+        }
+        System.out.println("Congratulations, you guessed the number " + num);
+    }
+}
