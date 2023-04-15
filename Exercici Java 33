@@ -1,0 +1,33 @@
+import java.util.Scanner;
+
+public class Sum {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        int sum = 0;
+        int num;
+        do {
+            System.out.print("Introdueix un número enter (0 per finalitzar): ");
+            num = input.nextInt();
+            sum += num;
+        } while (num != 0);
+        System.out.println("La suma de tots els valors llegits és: " + sum);
+    }
+}
+
+import java.util.Scanner;
+
+public class Sum {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        int sum = 0;
+        int num;
+
+        System.out.println("Introdueix números enters per sumar-los (0 per finalitzar):");
+        do {
+            num = input.nextInt();
+            sum += num;
+        } while (num != 0);
+
+        System.out.println("La suma dels números introduïts és: " + sum);
+    }
+}
