@@ -1,0 +1,9 @@
+def count3(d, c):
+    count = 0
+    for key in d:
+        if isinstance(key, str) and c in key:
+            count += key.count(c)
+        if isinstance(d[key], str) and c in d[key]:
+            count += d[key].count(c)
+    return count
+print count3({"hello": "hola", "bye": "que", "hi": "tal"}, 'e')
