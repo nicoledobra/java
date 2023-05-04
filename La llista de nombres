@@ -1,0 +1,6 @@
+def scope1(n):
+    if n >= 0:
+        return list(range(n))
+    else:
+        return list(range(n+1, 1))
+print scope1(4)
