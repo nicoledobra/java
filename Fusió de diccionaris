@@ -1,0 +1,32 @@
+def fuse(d1, d2):
+    # Inicialitza un nou diccionari per emmagatzemar la unió
+    result = {}
+    
+    # Itera per cada clau i valor del primer diccionari i els afegim al resultat
+    for key, value in d1.items():
+        result[key] = value
+    
+    # Itera per cada clau i valor del segon diccionari i els afegim al resultat,
+    # sumant el valor al valor ja existent si la clau ja existeix
+    for key, value in d2.items():
+        if key in result:
+            result[key] += value
+        else:
+            result[key] = value
+    
+    # Retorna el diccionari resultat
+    return result
+print fuse({'cond10mF': 23, 'res100MO': 321, 'ls74214': 2}, {'res100MO': 100, 'ls74214': 20, 'res20': 70})
+
+
+def fuse(d1, d2):
+    result = {}
+    for key in d1:
+        result[key] = d1[key]
+    for key in d2:
+        if key in result:
+            result[key] += d2[key]
+        else:
+            result[key] = d2[key]
+    return result
+print fuse({'cond10mF': 23, 'res100MO': 321, 'ls74214': 2}, {'res100MO': 100, 'ls74214': 20, 'res20': 70})
