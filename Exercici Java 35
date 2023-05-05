@@ -1,0 +1,21 @@
+import java.util.Scanner;
+
+public class Multiply {
+    public static void main(String[] args) {
+        int product = 1;
+        int count = 0;
+        int i = 1;
+        Scanner sc = new Scanner(System.in);
+       
+        while (count < 10) {
+            
+            if (i % 2 == 1) {
+                System.out.println("Multiplying the number " + i);
+                product *= i;
+                count++;
+            }
+            i++;
+        }
+        System.out.println("The total of the multiplication of the first ten odd numbers is " + product);
+    }
+}
