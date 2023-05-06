@@ -1,0 +1,15 @@
+import java.util.Scanner;
+
+public class MultiplyTable {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Insert an integer number: ");
+        int num = input.nextInt();
+        input.close();
+        
+        for (int i = 0; i <= 10; i++) {
+            int result = num * i;
+            System.out.println(num + "x" + i + "=" + result);
+        }
+    }
+}
