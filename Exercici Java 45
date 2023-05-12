@@ -1,0 +1,42 @@
+import java.util.Scanner;
+
+public class Array3 {
+    public static void main(String[] args) {
+        int[] array = new int[10];
+        int posCount = 0, negCount = 0, zeroCount = 0;
+        int posSum = 0, negSum = 0;
+
+        Scanner scanner = new Scanner(System.in);
+
+        for (int i = 0; i < 10; i++) {
+            System.out.print("Insert an integer number: ");
+            array[i] = scanner.nextInt();
+
+            if (array[i] > 0) {
+                posCount++;
+                posSum += array[i];
+            } else if (array[i] < 0) {
+                negCount++;
+                negSum += array[i];
+            } else {
+                zeroCount++;
+            }
+        }
+      	System.out.println("The total of zeros read is " + zeroCount);
+		
+      	if (negCount > 0) {
+            double negAvg = (double) negSum / negCount;
+            System.out.println("The average of the negative numbers read is " + negAvg);
+        } else {
+            System.out.println("Zero negative numbers read");
+        }
+          
+        if (posCount > 0) {
+            double posAvg = (double) posSum / posCount;
+            System.out.println("The average of the positive numbers read is " + posAvg);
+        } else {
+            System.out.println("Zero positive numbers read");
+        }
+      
+    }
+}
