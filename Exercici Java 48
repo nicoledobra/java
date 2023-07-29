@@ -1,0 +1,83 @@
+import java.util.Scanner;
+
+public class Array6 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Start reading array");
+        int[] array1 = readArray(sc);
+        System.out.println("Finish reading array");
+
+        System.out.println("Start reading array");
+        int[] array2 = readArray(sc);
+        System.out.println("Finish reading array");
+
+        System.out.println("Start reading array");
+        int[] array3 = readArray(sc);
+        System.out.println("Finish reading array");
+
+        float avg1 = Average(array1);
+        float avg2 = Average(array2);
+        float avg3 = Average(array3);
+
+        System.out.println("The average of the first array is " + avg1);
+        System.out.println("The average of the second array is " + avg2);
+        System.out.println("The average of the third array is " + avg3);
+    }
+
+    public static int[] readArray(Scanner sc) {
+        int[] arr = new int[5];
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print("Insert integer value: ");
+            arr[i] = sc.nextInt();
+        }
+        return arr;
+    }
+
+    public static float Average(int[] arr) {
+        int sum = 0;
+        for (int num : arr) {
+            sum += num;
+        }
+        return (float) sum / arr.length;
+    }
+}
+
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int[][] arrays = new int[3][5];
+
+        for (int i = 0; i < arrays.length; i++) {
+            System.out.println("Start reading array " + (i + 1));
+            arrays[i] = readArray(sc);
+            System.out.println("Finish reading array " + (i + 1) + "\n");
+        }
+
+        for (int i = 0; i < arrays.length; i++) {
+            float average = Average(arrays[i]);
+            System.out.println("The average of the array " + (i + 1) + " is " + average);
+        }
+    }
+
+    public static int[] readArray(Scanner sc) {
+        int[] arr = new int[5];
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print("Insert integer value: ");
+            arr[i] = sc.nextInt();
+        }
+        return arr;
+    }
+
+    public static float Average(int[] arr) {
+        int sum = 0;
+        for (int num : arr) {
+            sum += num;
+        }
+        return (float) sum / arr.length;
+    }
+}
