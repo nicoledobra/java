@@ -1,0 +1,40 @@
+Dissenyeu una classe en Java de nom RandomTest en un paquet de nom exercices.java,  que importi la classe Random del paquet java.util. Aquesta llibreria consta d'un constructor Random() i, un mètode nextInt(int n) que donat un enter n retorna un número escollit a l'atzar entre 0 i n - 1.
+Programa la funció main de tal manera que creii una matriu de 3 x 3, on cada valor s'hagi escollit aleatòriament d'entre 0 i 100. Finalment, mostra el contingut de la matriu per pantalla.
+Un exemple d'ús d'aquest programa podria ser:
+
+Value of the position (0, 0): 32
+Value of the position (0, 1): 83
+Value of the position (0, 2): 20
+Value of the position (1, 0): 53
+Value of the position (1, 1): 29
+Value of the position (1, 2): 100
+Value of the position (2, 0): 74
+Value of the position (2, 1): 17
+Value of the position (2, 2): 96
+
+package exercices.java;
+
+import java.util.Random;
+
+public class RandomTest {
+    public static void main(String[] args) {
+        int[][] matrix = new int[3][3];
+        Random random = new Random();
+
+        // Fill the matrix with random values between 0 and 100
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                matrix[i][j] = random.nextInt(101); // Generates a random number between 0 and 100 (exclusive)
+            }
+        }
+
+        // Display the matrix
+        System.out.println("Matrix contents:");
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                System.out.println("Value of the position (" + i + ", " + j + "): " + matrix[i][j]);
+            }
+        }
+    }
+}
+
