@@ -1,0 +1,51 @@
+Dissenyeu un programa en Java de nom Words2 que demani una frase a l'usuari. El programa ha de mostrar la frase donada després d'haver-ne eliminat la primera paraula.
+
+Per realitzar aquest programa cal que creem una nova funció de tipus privat, static i que retorni una cadena (String). Aquesta funció rebrà com a paràmetre una cadena i ens retornarà la mateixa després d'haver-ne eliminat la primera paraula. Per fer-ho caldrà fer ús dels següents mètodes de les cadenes:
+
+trim () -> elimina els espais en blanc del principi i el final d'una cadena.
+indexOf ( c ) -> retorna la posició de la primera aparició del caràcter c a la cadena. Retorna -1 si el caràcter no és present a la cadena. 
+substring ( n, m ) -> retorna el fragment de la cadena que va des de la posició n (inclosa) fins la posició m (no inclosa).
+Així, uns exemples d'execució del programa podrien ser:
+
+Insert a phrase: Hello Codelearners you are learning JAVA
+
+The given phrase after deleting the first word is Codelearners you are learning JAVA
+
+
+import java.util.Scanner;
+
+public class Words2 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        // Pedir al usuario que ingrese una frase
+        System.out.print("Insert a phrase: ");
+        String phrase = scanner.nextLine();
+        
+        // Llamar a la función para eliminar la primera palabra de la frase
+        String modifiedPhrase = removeFirstWord(phrase);
+        
+        // Mostrar la frase modificada
+        System.out.println("The given phrase after deleting the first word is " + modifiedPhrase);
+        
+        scanner.close();
+    }
+    
+    // Función para eliminar la primera palabra de una frase
+    private static String removeFirstWord(String phrase) {
+        // Eliminar espacios en blanco al principio y al final de la cadena
+        phrase = phrase.trim();
+        
+        // Encontrar la posición del primer espacio en blanco en la cadena
+        int firstSpaceIndex = phrase.indexOf(' ');
+        
+        // Verificar si se encontró un espacio en blanco
+        if (firstSpaceIndex != -1) {
+            // Si se encontró, devolver la subcadena desde después del primer espacio en blanco hasta el final de la cadena
+            return phrase.substring(firstSpaceIndex + 1);
+        } else {
+            // Si no se encontró un espacio en blanco, devolver una cadena vacía
+            return "";
+        }
+    }
+}
