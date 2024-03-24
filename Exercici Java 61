@@ -1,0 +1,124 @@
+Dissenyeu un programa en Java de nom Vowels1 que demani un text a l'usuari. A continuació el programa ha de mostrar per pantalla el número de vocals del text llegit.
+Per tal de realitzar-ho, cal que dissenyis una funció auxiliar privada, static i de tipus enter (int) que, donada una cadena per paràmetre, retorni el nombre de vocal de la cadena donada.
+Per conèixer la longitud d'un string a Java pots usar el mètode length() i, per accedir a l'element d'una determinada posició pots usar el mètode charAt(). 
+Així, per exemple per mostrar per pantalla els elements d'un string s podríem escriure:
+
+for ( int i = 0; i < s.length(); i++ ) {
+
+    System.out.println( s.charAt ( i ) );
+
+}
+
+Un exemple d'ús del programa podria ser:
+
+Insert a text: banana
+The number of vowels of the given text is 3
+
+code:
+1)
+import java.util.Scanner;
+
+public class Vowels1 {
+    private static int countVowels(String text) {
+        int vowels = 0;
+        text = text.toLowerCase(); // Convert to lowercase for case-insensitive comparison
+
+        for (int i = 0; i < text.length(); i++) {
+            char ch = text.charAt(i);
+            if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u') {
+                vowels++;
+            }
+        }
+        return vowels;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Insert a text: ");
+        String inputText = scanner.nextLine();
+
+        int vowelCount = countVowels(inputText);
+        System.out.println("The number of vowels of the given text is " + vowelCount);
+    }
+}
+
+2)
+import java.util.Scanner;
+
+public class Vowels1 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        // Pedir al usuario que inserte un texto
+        System.out.print("Insert a text: ");
+        String text = scanner.nextLine();
+        
+        // Obtener el número de vocales en el texto
+        int numVowels = countVowels(text);
+        
+        // Mostrar el número de vocales por pantalla
+        System.out.println("The number of vowels of the given text is " + numVowels);
+        
+        scanner.close();
+    }
+    
+    // Función auxiliar para contar el número de vocales en una cadena
+    private static int countVowels(String text) {
+        int count = 0;
+        // Convertir el texto a minúsculas para simplificar la comparación
+        text = text.toLowerCase();
+        // Iterar sobre cada caracter de la cadena
+        for (int i = 0; i < text.length(); i++) {
+            char ch = text.charAt(i);
+            // Verificar si el caracter actual es una vocal
+            if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u') {
+                count++;
+            }
+        }
+        return count;
+    }
+}
+
+3)
+import java.util.Scanner;
+
+public class Vowels1 {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Demanar el text a l'usuari
+        System.out.print("Introdueix un text: ");
+        String text = scanner.nextLine();
+
+        // Crida a la funció auxiliar per obtenir el nombre de vocals
+        int numVocals = comptarVocals(text);
+
+        // Mostrar el resultat per pantalla
+        System.out.println("El nombre de vocals del text introduït és: " + numVocals);
+    }
+
+    private static int comptarVocals(String cadena) {
+        int numVocals = 0;
+
+        // Recorrer la cadena caracter a caracter
+        for (int i = 0; i < cadena.length(); i++) {
+            char caracter = cadena.charAt(i);
+
+            // Comprovar si el caracter és una vocal
+            if (esVocal(caracter)) {
+                numVocals++;
+            }
+        }
+
+        return numVocals;
+    }
+
+    private static boolean esVocal(char caracter) {
+        // Convertir el caracter a minúscula
+        caracter = Character.toLowerCase(caracter);
+
+        // Comprovar si el caracter es troba entre les vocals
+        return caracter == 'a' || caracter == 'e' || caracter == 'i' || caracter == 'o' || caracter == 'u';
+    }
+}
