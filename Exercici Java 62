@@ -1,0 +1,126 @@
+Dissenyeu un programa en Java de nom Vowels2 que demani 10 textos a l'usuari i els emmagatzemi en un array. A continuació el programa ha de mostrar per pantalla cada text i el seu número 
+de vocals (minúscules) i, al final, la suma total del número de vocals de cada text llegit.
+Per tal de realitzar-ho, cal que dissenyis una funció auxiliar privada, static i de tipus enter (int) que, donada una cadena per paràmetre, retorni el nombre de vocals de la cadena donada.
+Per conèixer la longitud d'un string a Java pots usar el mètode length() i, per accedir a l'element d'una determinada posició pots usar el mètode charAt(). 
+Així, per exemple per mostrar per pantalla els elements d'un string s podríem escriure:
+
+for ( int i = 0; i < s.length(); i++ ) {
+
+    System.out.println( s.charAt ( i ) );
+
+}
+
+Un exemple d'ús del programa podria ser:
+
+Insert a text: Codelearn
+Insert a text: Java
+Insert a text: Python
+Insert a text: Logo
+Insert a text: Karel
+Insert a text: C++
+Insert a text: Shell Script
+Insert a text: Openscad
+Insert a text: Scratch
+Insert a text: HTML
+
+The number of vowels of the given text Codelearn is 4
+The number of vowels of the given text Java is 2
+The number of vowels of the given text Python is 1
+The number of vowels of the given text Logo is 2
+The number of vowels of the given text Karel is 2
+The number of vowels of the given text C++ is 0
+The number of vowels of the given text Shell Script is 2
+The number of vowels of the given text Openscad is 2
+The number of vowels of the given text Scratch is 1
+The number of vowels of the given text HTML is 0
+The total number of vowels of the given texts is 16
+
+code:
+1)
+
+import java.util.Scanner;
+
+public class Vowels2 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        String[] texts = new String[10];
+        
+        // Pedir al usuario que ingrese 10 textos y almacenarlos en un array
+        for (int i = 0; i < 10; i++) {
+            System.out.print("Insert a text: ");
+            texts[i] = scanner.nextLine();
+        }
+        
+        int totalVowels = 0;
+        
+        // Mostrar cada texto y el número de vocales en él
+        for (String text : texts) {
+            int numVowels = countVowels(text);
+            System.out.println("The number of vowels of the given text " + text + " is " + numVowels);
+            totalVowels += numVowels;
+        }
+        
+        // Mostrar la suma total del número de vocales de todos los textos
+        System.out.println("The total number of vowels of the given texts is " + totalVowels);
+        
+        scanner.close();
+    }
+    
+    // Función auxiliar para contar el número de vocales en una cadena
+    private static int countVowels(String text) {
+        int count = 0;
+        // Convertir el texto a minúsculas para simplificar la comparación
+        text = text.toLowerCase();
+        // Iterar sobre cada caracter de la cadena
+        for (int i = 0; i < text.length(); i++) {
+            char ch = text.charAt(i);
+            // Verificar si el caracter actual es una vocal
+            if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u') {
+                count++;
+            }
+        }
+        return count;
+    }
+}
+
+2)
+
+import java.util.Scanner;
+
+public class Vowels2 {
+    private static int countVowels(String text) {
+        int vowels = 0;
+        text = text.toLowerCase(); // Convert to lowercase for case-insensitive comparison
+
+        for (int i = 0; i < text.length(); i++) {
+            char ch = text.charAt(i);
+            if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u') {
+                vowels++;
+            }
+        }
+        return vowels;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String[] texts = new String[10];
+        int totalVowels = 0;
+
+        // Read 10 texts from the user
+        for (int i = 0; i < 10; i++) {
+            System.out.print("Insert a text: ");
+            texts[i] = scanner.nextLine();
+            totalVowels += countVowels(texts[i]);
+        }
+
+        // Display each text and its vowel count
+        for (int i = 0; i < 10; i++) {
+            int vowels = countVowels(texts[i]);
+            System.out.println("The number of vowels of the given text " + texts[i] + " is " + vowels);
+        }
+
+        // Display the total number of vowels
+        System.out.println("\nThe total number of vowels of the given texts is " + totalVowels);
+    }
+}
