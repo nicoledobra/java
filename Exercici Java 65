@@ -1,0 +1,89 @@
+Dissenyeu un programa en Java de nom Words3 que emmagatzemi 5 frases introduides per l'usuari en un array. A continuació, el programa ha de mostrar les frases emmagatzemades després d'haver-ne eliminat la primera i la última paraula.
+
+Per realitzar aquest programa cal que creem dues noves funcions de tipus privat, static i que retornin una cadena (String). La primera funció ha de rebre una cadena i eliminar-ne la primera paraula, mentre que la segon funció rebrà com a paràmetre una cadena i ens retornarà la mateixa després d'haver-ne eliminat la última paraula. Per fer-ho caldrà fer ús dels següents mètodes de les cadenes:
+
+trim () -> elimina els espais en blanc del principi i el final d'una cadena.
+indexOf ( c ) -> retorna la posició de la primera aparició del caràcter c a la cadena. Retorna -1 si el caràcter no és present a la cadena. 
+lastIndexOf ( c ) -> retorna la posició de la última aparició del caràcter c a la cadena. Retorna -1 si el caràcter no és present a la cadena. 
+substring ( n, m ) -> retorna el fragment de la cadena que va des de la posició n (inclosa) fins la posició m (no inclosa).
+Així, uns exemples d'execució del programa podrien ser:
+
+Insert a phrase 0: Hello Codelearners you are learning JAVA
+
+Insert a phrase 1: This is an example text
+
+Insert a phrase 2: This is an another example
+
+Insert a phrase 3: Keep writing
+
+Insert a phrase 4: winter is coming
+
+Codelearners you are learning
+
+is an example
+
+is an another
+
+ 
+
+is
+
+import java.util.Scanner;
+
+public class Words3 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        String[] phrases = new String[5];
+        
+        // Pedir al usuario que ingrese 5 frases y almacenarlas en un array
+        for (int i = 0; i < 5; i++) {
+            System.out.print("Insert a phrase " + i + ": ");
+            phrases[i] = scanner.nextLine();
+        }
+        
+        // Mostrar las frases después de eliminar la primera y la última palabra
+        for (String phrase : phrases) {
+            String modifiedPhrase = removeFirstWord(removeLastWord(phrase));
+            System.out.println(modifiedPhrase);
+        }
+        
+        scanner.close();
+    }
+    
+    // Función para eliminar la primera palabra de una frase
+    private static String removeFirstWord(String phrase) {
+        // Eliminar espacios en blanco al principio y al final de la cadena
+        phrase = phrase.trim();
+        
+        // Encontrar la posición del primer espacio en blanco en la cadena
+        int firstSpaceIndex = phrase.indexOf(' ');
+        
+        // Verificar si se encontró un espacio en blanco
+        if (firstSpaceIndex != -1) {
+            // Si se encontró, devolver la subcadena desde después del primer espacio en blanco hasta el final de la cadena
+            return phrase.substring(firstSpaceIndex + 1);
+        } else {
+            // Si no se encontró un espacio en blanco, devolver una cadena vacía
+            return "";
+        }
+    }
+    
+    // Función para eliminar la última palabra de una frase
+    private static String removeLastWord(String phrase) {
+        // Eliminar espacios en blanco al principio y al final de la cadena
+        phrase = phrase.trim();
+        
+        // Encontrar la posición del último espacio en blanco en la cadena
+        int lastSpaceIndex = phrase.lastIndexOf(' ');
+        
+        // Verificar si se encontró un espacio en blanco
+        if (lastSpaceIndex != -1) {
+            // Si se encontró, devolver la subcadena desde el principio hasta el último espacio en blanco
+            return phrase.substring(0, lastSpaceIndex);
+        } else {
+            // Si no se encontró un espacio en blanco, devolver la frase completa
+            return phrase;
+        }
+    }
+}
