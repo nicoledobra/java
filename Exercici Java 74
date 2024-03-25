@@ -1,0 +1,57 @@
+Crea una nova classe Java per representar una persona. La classe s'ha d'anomenar Person i ha de tenir dos atributs: un per representar el nom de la persona i l'altre per representar l'edat.
+
+Tot seguit crea dos constructors de classe:
+
+Un constructor sense paràmetres que inicialitzi el nom de la Persona a "John Doe" i amb 0 anys.
+Un constructor amb paràmetres que rebi una cadena amb el nom d'una persona i un enter amb la seva edat. El constructor ha de fer servir aquests dos valors per inicialitzar els atributs del nou objecte.
+Finalment, dissenya el programa principal de tal manera que crei dos nous objectes de la classe Person. Un d'ells ha d'estar inicialitzat mitjançant el constructor sense paràmetres i l'altre amb el constructor amb paràmetres. Tot setguit mostra el nom i l'edat dels dos objectes per pantalla.
+
+Un exemple d'ús d'aquest programa podria ser:
+
+Name of the first person: John Doe
+
+Age of the first person: 0
+
+Name of the second person: Aragorn Son of Arathorn
+
+Age of the second person: 80
+
+public class Person {
+    // Atributos
+    private String name;
+    private int age;
+
+    // Constructor sin parámetros
+    public Person() {
+        this.name = "John Doe";
+        this.age = 0;
+    }
+
+    // Constructor con parámetros
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    // Métodos para obtener el nombre y la edad
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    // Método principal (main) para probar la clase
+    public static void main(String[] args) {
+        // Crear una instancia de la clase utilizando el constructor sin parámetros
+        Person person1 = new Person();
+        System.out.println("Name of the first person: " + person1.getName());
+        System.out.println("Age of the first person: " + person1.getAge());
+
+        // Crear otra instancia de la clase utilizando el constructor con parámetros
+        Person person2 = new Person("Aragorn Son of Arathorn", 80);
+        System.out.println("Name of the second person: " + person2.getName());
+        System.out.println("Age of the second person: " + person2.getAge());
+    }
+}
