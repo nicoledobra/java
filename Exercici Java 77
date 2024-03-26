@@ -1,0 +1,27 @@
+Crea una nova classe Java de nom StaticTest que tingui dos atributs: un de tipus string i un de tipus enter. Els dos atributs han de ser static.
+A continuació, utilitza un bloc static per inicial el valor dels atributs a "Codelearn" i 2013 respectivament.
+Finalment, crea el mètode main de tal manera que mostri el contingut dels atributs static per pantalla.
+Un exemple d'execució del programa podria ser:
+Value of the integer: 2013
+Value of text: Codelearn
+
+code:
+
+public class StaticTest {
+    // Atributos estáticos
+    static String text;
+    static int number;
+
+    // Bloque estático para inicializar los atributos
+    static {
+        text = "Codelearn";
+        number = 2013;
+    }
+
+    // Método main
+    public static void main(String[] args) {
+        // Mostrar el contenido de los atributos estáticos por pantalla
+        System.out.println("Value of the integer: " + number);
+        System.out.println("Value of text: " + text);
+    }
+}
