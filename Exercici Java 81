@@ -1,0 +1,93 @@
+Crea una classe anomenada Account que tingui els següents atributs privats: owner (de tipus cadena) i amount (de tipus double).
+El titular és obligatori i la quantitat opcional (per tant, haurem de tenir dos constructors: un que permeti assignar la quantitat i l'altre que inicialitzi directament el valor a 0).
+A més, caldrà crear els mètodes públics que permetin recuperar els valors (gets) i els que permetin assignar els valors (sets) d'aquests atributs.
+Crea a més un mètode públic toString que retorni un text amb la informació del propietari d'un compte i la quantitat de diners que hi té. El missatge hauria de ser similar al següent (per un usuari amb 0.0 euros al compte).
+
+User 1 of the current account has 0.0
+
+Cal també crear els següents dos mètodes públics:
+
+deposit ( double amount ) -> incrementa la quantitat de diners d'un compte. Si la quantitat que es passa a aquesta funció és negativa, no es farà res.
+withdrawal ( double amount ) -> disminueix la quantitat de diners d'un compte. Si un compte restada la quantitat a retirar dels diners del compte s'obté un número negatiu, el saldo del compte ha de quedar a 0.
+Un cop creada la teva classe prova el teu codi amb la següent classe main:
+
+public class Main {
+
+    public static void main ( String[] args ) {
+
+        Account ac1 = new Account ( "User 1" );
+
+        Account ac2 = new Account ( "User 2", 300 );
+
+        // Cash deposit
+
+        ac1.deposit ( 300 );
+
+        ac2.deposit ( 400 );
+
+        // Cash withdrawal
+
+        ac1.withdrawal ( 500 );
+
+        ac2.withdrawal ( 100 );
+
+        // Show accounts information
+
+        System.out.println ( ac1 ); // 0 euros
+
+        System.out.println ( ac2 ); // 600 euros
+
+    }
+
+}
+
+public class Account {
+    private String owner;
+    private double amount;
+
+    // Constructor que permite asignar la cantidad
+    public Account(String owner, double amount) {
+        this.owner = owner;
+        this.amount = amount;
+    }
+
+    // Constructor que inicializa la cantidad a 0
+    public Account(String owner) {
+        this(owner, 0.0);
+    }
+
+    // Método para obtener el propietario
+    public String getOwner() {
+        return owner;
+    }
+
+    // Método para obtener la cantidad
+    public double getAmount() {
+        return amount;
+    }
+
+    // Método para establecer la cantidad
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
+    // Método para incrementar la cantidad
+    public void deposit(double amount) {
+        if (amount > 0) {
+            this.amount += amount;
+        }
+    }
+
+    // Método para disminuir la cantidad
+    public void withdrawal(double amount) {
+        if (amount > 0) {
+            double result = this.amount - amount;
+            this.amount = (result < 0) ? 0 : result;
+        }
+    }
+
+    // Método toString para mostrar la información del propietario y la cantidad
+    public String toString() {
+        return owner + " of the current account has " + amount + " euros";
+    }
+}
