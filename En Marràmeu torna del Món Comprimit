@@ -1,0 +1,46 @@
+Ajudes:
+
+- Crea una funció de nom marrameow().
+- En aquesta funció crea una esfera de radi 8 i resolució 42. Emmagatzema el resultat en una variable de nom a.
+- En aquesta funció crea un cilindre de radi de base 8, radi de sostre 0, altura 20 i resolució 42. Trasllada la figura a les coordenades [0, 0,1.5]. 
+Emmagatzema el resultat en una variable de nom b.
+- En aquesta funció crea una esfera de radi 10 i resolució 42. Escala aquesta esfera en proporció [0.7, 1, 0.7], i trasllada el resultat a les coordenades [0, 0, 20]. 
+Emmagatzema el resultat en una variable de nom c.
+- En aquesta funció crea un cilindre de radi de base 2, radi de sostre 0, altura 5. Trasllada la figura a les coordenades [0, 5, 25.2]. Emmagatzema el resultat en una variable de nom d.
+- En aquesta funció crea un cilindre de radi de base 2, radi de sostre 0, altura 5. Trasllada la figura a les coordenades [0, -5, 25.2]. Emmagatzema el resultat en una variable de nom e.
+- En aquesta funció crea un cilindre de radi de base 2, radi de sostre 0, altura 12. Rota la figura 270º sobre l'eix de les y. Trasllada la figura a les coordenades [20, 0, 0]. 
+Emmagatzema el resultat en una variable de nom f.
+- Crea una esfera de radi 2 i trasllada-la a les coordenades [20, 0, 0]. Emmagatzema el resultat en una variable de nom g.
+- En aquesta funció crea un cilindre de radi de base 0, radi de sostre 2, altura 10. Rota la figura 30º sobre l'eix de les x. Trasllada la figura a les coordenades [0, 10, -10]. 
+Emmagatzema el resultat en una variable de nom h.
+- En aquesta funció crea un cilindre de radi de base 0, radi de sostre 2, altura 10. Rota la figura -30º sobre l'eix de les x. Trasllada la figura a les coordenades [0, -10, -10]. 
+Emmagatzema el resultat en una variable de nom i.
+- En aquesta funció crea un cilindre de radi de base 0, radi de sostre 2, altura 12. Rota la figura 90º sobre l'eix de les x. Trasllada la figura a les coordenades [0, 15, 10]. 
+Emmagatzema el resultat en una variable de nom j.
+- En aquesta funció crea un cilindre de radi de base 0, radi de sostre 2, altura 12. Rota la figura -90º sobre l'eix de les x. Trasllada la figura a les coordenades [0, -15, 10]. 
+Emmagatzema el resultat en una variable de nom k.
+- Fes que la funció marrameu() retorni el resultat d'unir les figures a, b, c, d, e, f, g, h, i, j i k.
+- Finalment, fes la funció main(), que retorni la crida a la funció marrameow() i el traslladi a les coordenades [0, 0, 10].
+
+
+function marrameow(){
+    a= CSG.sphere ( { radius: 8, resolution: 42} );
+    b= translate([0, 0, 1.5], cylinder({r1: 8, r2: 0, h: 20, fn: 42}));
+    c= translate([0, 0, 20], scale([0.7, 1, 0.7],
+    CSG.sphere ( { radius: 10, resolution: 42} )));
+    d= translate([0, 5, 25.2], cylinder({r1: 2, r2: 0, h: 5}));
+    e= translate([0, -5, 25.2], cylinder({r1: 2, r2: 0, h: 5}));
+    f= translate([20, 0, 0], rotate([0, 270, 0],
+    cylinder({r1: 2, r2: 0, h: 12})));
+    g= translate([20, 0, 0], sphere(2));
+    h= translate([0, 10, -10], rotate([30, 0, 0],
+    cylinder({r1: 0, r2: 2, h: 10})));
+    i= translate([0, -10, -10], rotate([-30, 0, 0],
+    cylinder({r1: 0, r2: 2, h: 10})));
+    j= translate([0, 15, 10], rotate([90, 0, 0],
+    cylinder({r1: 0, r2: 2, h: 12})));
+    k= translate([0, -15, 10], rotate([-90, 0, 0],
+    cylinder({r1: 0, r2: 2, h: 12})));
+    return union(a, b, c, d, e, f, g, h, i, j, k);}
+function main(){
+    return translate([0, 0, 10], marrameow());}
