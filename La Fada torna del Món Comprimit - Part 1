@@ -1,0 +1,31 @@
+AJUDES:
+- Crea una funció de nom ales().
+- En aquesta funció crea un cercle de radi 5. Extreu linialment aquest cercle amb una altura d'1. La figura resultant gira-la 90º sobre l'eix de les x. 
+Escala el resultat en proporció de 0.5 sobre l'eix de les x. 
+Finalment, rota la figura resultant 45º sobre l'eix de les y. Emmagatzema el resultat en una variable de nom x1.
+- En aquesta funció crea un cercle de radi 5. Extreu linialment aquest cercle amb una altura d'1. La figura resultant gira-la 90º sobre l'eix de les x. 
+Escala el resultat en proporció de 0.5 sobre l'eix de les x. Rota la figura resultant -45º sobre l'eix de les y, i trasllada-la a les coordenades [7, 0, -10]. 
+Emmagatzema el resultat en una variable de nom x2.
+- En aquesta funció crea un cercle de radi 5. Extreu linialment aquest cercle amb una altura d'1. La figura resultant gira-la 90º sobre l'eix de les x. 
+Escala el resultat en proporció de 0.5 sobre l'eix de les x. Rota la figura resultant -45º sobre l'eix de les y, i trasllada-la a les coordenades [0, 0, -4]. 
+Emmagatzema el resultat en una variable de nom x3.
+- En aquesta funció crea un cercle de radi 5. Extreu linialment aquest cercle amb una altura d'1. La figura resultant gira-la 90º sobre l'eix de les x. 
+Escala el resultat en proporció de 0.5 sobre l'eix de les x. Rota la figura resultant 45º sobre l'eix de les y, i trasllada-la a les coordenades [-7, 0, -7]. 
+Emmagatzema el resultat en una variable de nom x4.
+- Fes que la funció ales() retorni la unió de les figures x1, x2, x3 i x4.
+- Finalment, crea la funció main() i fes que aquesta retorni la crida a la funció ales().
+
+CODE:
+
+function ales(){
+    x1 = rotate([0, 45, 0], scale([0.5, 1, 1], rotate([90, 0, 0],  linear_extrude ( {h: 1}, circle(5)))));
+    x2 = translate([7, 0, -10], rotate([0, -45, 0], scale([0.5, 1, 1], 
+     rotate([90, 0, 0], linear_extrude({h: 1}, circle(5))))));
+    x3 = translate ([0, 0, -4], rotate([0, -45, 0], scale([0.5, 1, 1], 
+    rotate([90, 0, 0], linear_extrude ( {h: 1}, circle(5))))));
+    x4 = translate ([-7, 0, -7], rotate([0, 45, 0], scale([0.5, 1, 1],
+    rotate([90, 0, 0], linear_extrude ( {height: 1}, circle(5))))));
+   return union (x1, x2, x3, x4);}
+
+function main(){
+  return ales();}
