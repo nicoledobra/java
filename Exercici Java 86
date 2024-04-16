@@ -1,0 +1,199 @@
+Dissenyeu una classe Employee amb el següent contingut:
+
+Atributs
+name -> text amb el nom de l'empleat.
+age -> número enter amb l'edat de l'empleat.
+married -> booleà que indica si el treballador està casat.
+salary -> número real (double) amb el salari de l'empleat.
+Constructors
+Constructor sense paràmetres d'entrada. No ha de fer res (és a dir, no ha d'iniciar els valors pels atributs).
+Constructor amb paràmetres que rebi valors per cada atribut de la classe.
+Mètodes
+Gets i sets per cada atribut. 
+classification () -> ha de retornar un text amb la classificació de l'empleat segons la seva edat, seguint la següent taula:
+si l'empleat té entre 0 i 21 anys -> Beginer
+si l'empleat té entre 22 i 35 anys -> Intermediate
+si l'empleat té més de 35 anys -> Senior
+salaryRaise(double percentage) -> ha d'incrementar el valor de l'atribut salary de l'empleat en un percentatge igual al del valor passat com a paràmetre (passat en tant per u).
+toString () -> ha de retornar una cadena de text amb la informació de l'empleat a punt per veure's per pantalla. La informació ha d'incloure la classificació de l'empleat.
+Dissenyeu una classe Programmer que sigui una subclasse d'Employee. Aquesta nova classe hereda els continguts de la seva superclasse i, a més, ha de tenir també:
+
+Atributs
+codeLinesPerHour -> nombre enter amb el número de línies per hora de codi que genera el programador.
+preferredLanguage -> text amb el llenguatge que més domina el programador.
+Constructors
+Constructor sense paràmetres d'entrada. No ha de fer res (és a dir, no ha d'iniciar els valors pels atributs).
+Constructor amb paràmetres que rebi valors per cada atribut de la classe. Ha d'usar el constructor de la superclasse.
+Mètodes
+Gets i sets per als nous atributs.
+toString () -> cal sobrescriure el mètode heredat de la classe. En aquest cas, el mètode ha de retornar una cadena de text amb la informació de l'empleat a punt per veure's per pantalla. La informació ha d'incloure la classificació de l'empleat així com els nous atributs.
+Finalment, dissenyeu una classe Main que creii un empleat i un programador. A continuació s'ha d'incrementar el sou del programador i mostrar per pantalla la informació dels dos.
+
+Per exemple, si créssim els dos objectes següents i incrementéssim el salari del programador en un 25% el que es veuria per pantalla seria:
+
+Employee e = new Employee("Babar", 90, true, 1800):
+
+Programmer p = new Programmer("Marrameow", 5, false, 1200, 1000, "Java");
+
+p.salaryRaise(0.25);
+
+La sortida que es veuria per pantalla seria:
+
+Name: Babar
+
+Age: 90
+
+Married?: true
+
+Salary: 1800.0
+
+Classification: Senior
+
+Name: Marrameow
+
+Age: 5
+
+Married?: false
+
+Salary: 1500.0
+
+Classification: Beginer
+
+Code Lines Per Hour: 1000
+
+
+code:
+
+public class Employee {
+
+    private String name;
+    private int age;
+    private boolean married;
+    private double salary;
+
+    // Constructor sense paràmetres
+    public Employee() {
+    }
+
+    // Constructor amb paràmetres
+    public Employee(String name, int age, boolean married, double salary) {
+        this.name = name;
+        this.age = age;
+        this.married = married;
+        this.salary = salary;
+    }
+
+    // Getters
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public boolean isMarried() {
+        return married;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    // Setters
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setMarried(boolean married) {
+        this.married = married;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
+
+    // Mètode classification()
+    public String classification() {
+        if (age <= 21) {
+            return "Beginer";
+        } else if (age <= 35) {
+            return "Intermediate";
+        } else {
+            return "Senior";
+        }
+    }
+
+    // Mètode salaryRaise()
+    public void salaryRaise(double percentage) {
+        salary += salary * percentage;
+    }
+
+    // Mètode toString()
+    @Override
+    public String toString() {
+        return "Name: " + name + "\n" +
+                "Age: " + age + "\n" +
+                "Married?: " + married + "\n" +
+                "Salary: " + salary + "\n" +
+                "Classification: " + classification();
+    }
+}
+public class Programmer extends Employee {
+
+    private int codeLinesPerHour;
+    private String preferredLanguage;
+
+    // Constructor sense paràmetres
+    public Programmer() {
+    }
+
+    // Constructor amb paràmetres
+    public Programmer(String name, int age, boolean married, double salary, int codeLinesPerHour, String preferredLanguage) {
+        super(name, age, married, salary);
+        this.codeLinesPerHour = codeLinesPerHour;
+        this.preferredLanguage = preferredLanguage;
+    }
+
+    // Getters per als nous atributs
+    public int getCodeLinesPerHour() {
+        return codeLinesPerHour;
+    }
+
+    public String getPreferredLanguage() {
+        return preferredLanguage;
+    }
+
+    // Setters per als nous atributs
+    public void setCodeLinesPerHour(int codeLinesPerHour) {
+        this.codeLinesPerHour = codeLinesPerHour;
+    }
+
+    public void setPreferredLanguage(String preferredLanguage) {
+        this.preferredLanguage = preferredLanguage;
+    }
+
+    // Mètode toString() sobrescrit
+    @Override
+    public String toString() {
+        return super.toString() + "\n" +
+                "Code Lines Per Hour: " + codeLinesPerHour + "\n" +
+                "Preferred Language: " + preferredLanguage;
+    }
+}
+public class Main {
+
+    public static void main(String[] args) {
+        Employee e = new Employee("Babar", 90, true, 1800);
+        Programmer p = new Programmer("Marrameow", 5, false, 1200, 1000, "Java");
+
+        p.salaryRaise(0.25);
+
+        System.out.println(e);
+        System.out.println(p);
+    }
+}
