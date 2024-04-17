@@ -1,0 +1,182 @@
+Dissenyeu una classe Celular amb el següent contingut:
+
+Atributs
+color -> text amb el color del telèfon mòbil.
+model -> text amb el model de telèfon mòbil.
+brand -> text amb la marca del telèfon mòbil.
+Constructors
+Constructor sense paràmetres d'entrada. No ha de fer res (és a dir, no ha d'iniciar els valors pels atributs).
+Constructor amb paràmetres que rebi valors per cada atribut de la classe.
+Mètodes
+Gets i sets per cada atribut. 
+call ( String name ) -> ha de mostrar per pantalla el missatge "Calling..." seguit del nom rebut com a paràmetre.
+endCall ( ) -> ha de mostrar per pantalla el missatge "Call finished".
+toString () -> ha de retornar una cadena de text amb la informació del telèfon mòbil.
+Dissenyeu una classe Smartphone que sigui una subclasse de Celular. Aquesta nova classe hereda els continguts de la seva superclasse i, a més, ha de tenir també:
+
+Atributs
+pixelsCamera -> nombre real (double) amb el número de megapíxels de la càmara de l'smartphone.
+ram -> nombre real (double) amb la mida de la memòria de l'smartphone.
+diskSpace -> nombre real (double) amb la mida de l'emmagatzematge de l'smartphone.
+Constructors
+Constructor sense paràmetres d'entrada. No ha de fer res (és a dir, no ha d'iniciar els valors pels atributs).
+Constructor amb paràmetres que rebi valors per cada atribut de la classe. Ha d'usar el constructor de la superclasse.
+Mètodes
+Gets i sets per als nous atributs.
+toString () -> cal sobrescriure el mètode heredat de la classe. En aquest cas, el mètode ha de retornar una cadena de text amb la informació del telèfon mòbil a punt per veure's per pantalla. La informació ha d'incloure la informació específica d'un smartphone. Recorda que pots fer servir una funció de la superclasse escrivint, per exemple, super.toString().
+Finalment, dissenyeu una classe Main que creii un telèfon mòbil i un smartphone. A continuació s'ha de mostrar per pantalla la informació dels dos i s'han de fer servir alguns dels mètodes definits.
+
+Per exemple, si créssim els dos objectes següents:
+
+Celular c = new Celular("Black", "AiPepinoX", "CodePHONE" );
+Smartphone sm = new Smartphone("White","Universe 9", "CodePHONE", 18.0, 8.0, 512.0);
+La sortida que es veuria per pantalla seria:
+
+Phone Brand: CodePHONE
+Phone model: AiPepinoX
+Phone Color: Black
+Phone Brand: CodePHONE
+Phone model: Universe 9
+Phone Color: White
+Smartphone Camera: 18.0
+Smartphone ram: 8.0
+Smartphone Disk Space: 512.0
+Calling Babar
+Call finished
+Calling Fairy
+Call finished
+
+code:
+
+public class Celular {
+
+    private String color;
+    private String model;
+    private String brand;
+
+    // Constructor sense paràmetres
+    public Celular() {
+    }
+
+    // Constructor amb paràmetres
+    public Celular(String color, String model, String brand) {
+        this.color = color;
+        this.model = model;
+        this.brand = brand;
+    }
+
+    // Getters
+    public String getColor() {
+        return color;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    // Setters
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    // Mètode call()
+    public void call(String name) {
+        System.out.println("Calling..." + name);
+    }
+
+    // Mètode endCall()
+    public void endCall() {
+        System.out.println("Call finished");
+    }
+
+    // Mètode toString()
+    @Override
+    public String toString() {
+        return "Phone Brand: " + brand + "\n" +
+                "Phone model: " + model + "\n" +
+                "Phone Color: " + color;
+    }
+}
+
+public class Smartphone extends Celular {
+
+    private double pixelsCamera;
+    private double ram;
+    private double diskSpace;
+
+    // Constructor sense paràmetres
+    public Smartphone() {
+    }
+
+    // Constructor amb paràmetres
+    public Smartphone(String color, String model, String brand, double pixelsCamera, double ram, double diskSpace) {
+        super(color, model, brand);
+        this.pixelsCamera = pixelsCamera;
+        this.ram = ram;
+        this.diskSpace = diskSpace;
+    }
+
+    // Getters per als nous atributs
+    public double getPixelsCamera() {
+        return pixelsCamera;
+    }
+
+    public double getRam() {
+        return ram;
+    }
+
+    public double getDiskSpace() {
+        return diskSpace;
+    }
+
+    // Setters per als nous atributs
+    public void setPixelsCamera(double pixelsCamera) {
+        this.pixelsCamera = pixelsCamera;
+    }
+
+    public void setRam(double ram) {
+        this.ram = ram;
+    }
+
+    public void setDiskSpace(double diskSpace) {
+        this.diskSpace = diskSpace;
+    }
+
+    // Mètode toString() sobrescrit
+    @Override
+    public String toString() {
+        return super.toString() + "\n" +
+                "Smartphone Camera: " + pixelsCamera + "\n" +
+                "Smartphone ram: " + ram + "\n" +
+                "Smartphone Disk Space: " + diskSpace;
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+        Celular c = new Celular("Black", "AiPepinoX", "CodePHONE");
+        Smartphone sm = new Smartphone("White", "Universe 9", "CodePHONE", 18.0, 8.0, 512.0);
+
+        System.out.println(c);
+        System.out.println(sm);
+
+        c.call("Babar");
+        c.endCall();
+
+        sm.call("Fairy");
+        sm.endCall();
+    }
+}
