@@ -1,0 +1,168 @@
+Suposem que volem crear un programa que simuli un peatge (en anglès toll).
+
+Per un peatge passen diferents tipus de vehicle: motos, camions, autobusos i cotxes. Cadascun d'aquests vehicle paga uns impostos diferents en passar un peatge.
+
+Ens interessa doncs que la classe Toll implementi el cobrament per als diferents tipus de vehícle. Així doncs, per poder fer això haurem de crear diverses classes i fer ús del polimorfisme.
+
+Començarem creant la classe Vehicle amb el següent contingut:
+
+Atributs
+No hi haurà atributs
+Constructors
+Un constructor sense paràmetres que no farà res.
+Mètodes
+payToll() -> mostra per pantalla el missatge "I am a vehicle", seguit del missatge "Paying vehicle toll".
+Tot seguit caldrà crear subclasses de la classe Vehicle amb les característiques de cada transport.
+
+Classe Motorbike
+
+Atributs
+No hi haurà atributs
+Constructors
+Un constructor sense paràmetres que no farà res.
+Mètodes
+payToll() -> Sobreescriu el mètode de la superclasse. Mostra per pantalla el missatge "I am a motorbike", seguit del missatge "Paying motorbike toll".
+Classe Bus
+
+Atributs
+No hi haurà atributs
+Constructors
+Un constructor sense paràmetres que no farà res.
+Mètodes
+payToll() -> Sobreescriu el mètode de la superclasse. Mostra per pantalla el missatge "I am a bus", seguit del missatge "Paying bus toll".
+Classe Car
+
+Atributs
+No hi haurà atributs
+Constructors
+Un constructor sense paràmetres que no farà res.
+Mètodes
+payToll() -> Sobreescriu el mètode de la superclasse. Mostra per pantalla el missatge "I am a car", seguit del missatge "Paying car toll".
+Classe Truck
+
+Atributs
+No hi haurà atributs
+Constructors
+Un constructor sense paràmetres que no farà res.
+Mètodes
+payToll() -> Sobreescriu el mètode de la superclasse. Mostra per pantalla el missatge "I am a truck", seguit del missatge "Paying truck toll".
+Tot seguit crea la classe Toll que tingui el següent contingut:
+
+Atributs
+No hi haurà atributs
+Constructors
+Un constructor sense paràmetres que no farà res.
+Mètodes
+chargeToll ( Vehicle v ) -> Aquesta funció primer ha de mostrar el missatge "Charging toll" seguit dels missatges corresponents del mètode payToll() del vehicle. Cal fixar-se que el propi entorn de Java s'encarregarà de fer servir el mètode correcte en funció del tipus de subclasse de Vehicle (tot i que el mètode chargeToll pot rebre qualsevol vehicle com a paràmetre).
+Finalment, cal crear una classe Main que crei els objectes:
+
+Vehicle v = new Vehicle ();
+
+Bus b = new Bus ();
+
+Car c = new Car ();
+
+Motorbike m = new Motorbike ();
+
+Truck t = new Truck ();
+
+Toll toll = new Toll ();
+
+i mostri la següent sortida per pantalla:
+
+Charging toll
+
+I am a vehicle
+
+Paying vehicle toll
+
+Charging toll
+
+I am a bus
+
+Paying bus toll
+
+Charging toll
+
+I am a car
+
+Paying car toll
+
+Charging toll
+
+I am a motorbike
+
+Paying motorbike toll
+
+Charging toll
+
+I am a truck
+
+Paying truck toll
+
+
+code:
+
+public class Vehicle {
+
+    public void payToll() {
+        System.out.println("I am a vehicle");
+        System.out.println("Paying vehicle toll");
+    }
+}
+public class Motorbike extends Vehicle {
+
+    @Override
+    public void payToll() {
+        System.out.println("I am a motorbike");
+        System.out.println("Paying motorbike toll");
+    }
+}
+public class Bus extends Vehicle {
+
+    @Override
+    public void payToll() {
+        System.out.println("I am a bus");
+        System.out.println("Paying bus toll");
+    }
+}
+public class Car extends Vehicle {
+
+    @Override
+    public void payToll() {
+        System.out.println("I am a car");
+        System.out.println("Paying car toll");
+    }
+}
+public class Truck extends Vehicle {
+
+    @Override
+    public void payToll() {
+        System.out.println("I am a truck");
+        System.out.println("Paying truck toll");
+    }
+}
+public class Toll {
+
+    public void chargeToll(Vehicle v) {
+        System.out.println("Charging toll");
+        v.payToll();
+    }
+}
+public class Main {
+
+    public static void main(String[] args) {
+        Vehicle v = new Vehicle();
+        Bus b = new Bus();
+        Car c = new Car();
+        Motorbike m = new Motorbike();
+        Truck t = new Truck();
+        Toll toll = new Toll();
+
+        toll.chargeToll(v);
+        toll.chargeToll(b);
+        toll.chargeToll(c);
+        toll.chargeToll(m);
+        toll.chargeToll(t);
+    }
+}
