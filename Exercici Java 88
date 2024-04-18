@@ -1,0 +1,239 @@
+Dissenyeu una nova classe de nom Client que tingui el següent contingut:
+
+Atributs privats
+number -> número enter que identifica al client.
+name -> un text amb el nom del client.
+address -> un text amb l'adreça del client.
+phone -> un text amb el número de telèfon del client.
+Constructors
+Tindrà un únic constructor que rebrà per paràmetres valors per inicialitzar cada atribut.
+Mètodes
+Gets i sets per cada mètode.
+Dissenyeu una nova classe de nom Product que tingui el següent contingut:
+
+Atributs
+code -> número enter que identifica al producte.
+description -> un text amb la descripció del producte.
+price -> número real (double) amb el preu del producte.
+Constructors
+Tindrà un únic constructor que rebrà per paràmetres valors per inicialitzar cada atribut.
+Mètodes
+Gets i sets per cada mètode.
+Dissenyeu una nova classe de nom Sale que tingui el següent contingut:
+
+Atributs
+invoice -> número enter que identifica la factura de venta.
+date -> un text amb la data en què es va realitzar la venta.
+client -> un atribut de tipus Client que es vincula al client que ha realitzat la compra.
+product -> un atribut de tipus Product que es vincula al producte que s'ha venut.
+quantity -> un número enter amb la quantitat del producte que s'ha venut.
+totalAmount -> un número real (double) amb el valor total de venta.
+Constructors
+Tindrà un únic constructor que rebrà per paràmetres valors per inicialitzar cada atribut (excepte el totalAmount, que es calcularà).
+Mètodes
+Gets i sets per cada mètode (excepte totalAmount, que només tindrà un mètode get).
+calculateAmount () -> calcula el valor de la factura multiplicant la quantitat venuda del producte pel seu preu i actualitza el valor de l'atribut. S'ha d'utilitzar en el constructor.
+toString () -> retorna un text amb el resum de la factura.
+Finalment dissenya una clase Main que creii un client i un producte, i faci una factura amb la informació d'aquests dos. A continuació mostra per pantalla la informació de la factura.
+
+Per exemple, havent creat els següents objectes:
+
+Client c = new Client (1234, "Codelearn", "Somewhere Over the Rainbow Boulevard", "555-123-123");
+
+Product p = new Product (10, "Laptop", 1200);
+
+Sale s = new Sale (100, "01/01/2001", c, p, 10);
+
+La sortida per pantalla del programa seria:
+
+Invoice data:
+
+-------------
+
+Number: 100
+
+Date: 01/01/2001
+
+Client name: Codelearn
+
+Product name: Laptop
+
+Total amount: 12000.0
+
+code:
+
+public class Client {
+
+    private int number;
+    private String name;
+    private String address;
+    private String phone;
+
+    public Client(int number, String name, String address, String phone) {
+        this.number = number;
+        this.name = name;
+        this.address = address;
+        this.phone = phone;
+    }
+
+    // Getters
+    public int getNumber() {
+        return number;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    // Setters
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+}
+public class Product {
+
+    private int code;
+    private String description;
+    private double price;
+
+    public Product(int code, String description, double price) {
+        this.code = code;
+        this.description = description;
+        this.price = price;
+    }
+
+    // Getters
+    public int getCode() {
+        return code;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    // Setters
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+}
+public class Sale {
+
+    private int invoice;
+    private String date;
+    private Client client;
+    private Product product;
+    private int quantity;
+    private double totalAmount;
+
+    public Sale(int invoice, String date, Client client, Product product, int quantity) {
+        this.invoice = invoice;
+        this.date = date;
+        this.client = client;
+        this.product = product;
+        this.quantity = quantity;
+        this.totalAmount = calculateAmount();
+    }
+
+    // Getters
+    public int getInvoice() {
+        return invoice;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public double getTotalAmount() {
+        return totalAmount;
+    }
+
+    // Setters
+    public void setInvoice(int invoice) {
+        this.invoice = invoice;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    private double calculateAmount() {
+        return quantity * product.getPrice();
+    }
+
+    @Override
+    public String toString() {
+        return "Invoice data:\n" +
+                "-------------" +
+                "\nNumber: " + invoice +
+                "\nDate: " + date +
+                "\nClient name: " + client.getName() +
+                "\nProduct name: " + product.getDescription() +
+                "\nTotal amount: " + totalAmount;
+    }
+}
+public class Main {
+
+    public static void main(String[] args) {
+        Client c = new Client(1234, "Codelearn", "Somewhere Over the Rainbow Boulevard", "555-123-123");
+        Product p = new Product(10, "Laptop", 1200);
+        Sale s = new Sale(100, "01/01/2001", c, p, 10);
+
+        System.out.println(s);
+    }
+}
