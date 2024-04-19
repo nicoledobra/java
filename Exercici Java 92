@@ -1,0 +1,159 @@
+Dissenya una classe abstracta de nom Figure que tingui el següent contingut:
+
+Atributs
+height -> valor real (double) amb l'alçada de la figura. Ha de ser de tipus protected per tal que les subclasses hi puguin tenir accés directe (sense passar pels sets i gets) en els seus mètodes.
+width -> valor real (double) amb l'amplada de la figura. Ha de ser de tipus protected per tal que les subclasses hi puguin tenir accés directe (sense passar pels sets i gets) en els seus mètodes.
+Constructors
+Un constructor amb paràmetres que rebi valors per als atributs.
+Mètodes
+Gets i sets pels atributs
+calculatePerimeter() -> mètode abstracte que retorna un valor real (double) amb el perímetre de la figura.
+calculateArea() -> mètode abstracte que retorna un valor real (double) amb l'àrea de la figura.
+A continuació, cal que creis les següents subclasses de la classe Figure.
+
+Classe Triangle (equilàter)
+
+Atributs
+No té nous atributs.
+Constructors
+Un constructor amb paràmetres que rebi valors per als atributs heredats. Ha de fer servir el constructor de la superclasse.
+Mètodes
+calculatePerimeter() -> retorna un valor real (double) amb el perímetre del triangle. Feu servir height com a l'alçada i width com a base del triangle.
+calculateArea() -> retorna un valor real (double) amb l'àrea del triangle. Feu servir height com a l'alçada i width com a base del triangle.
+Classe Rectangle
+
+Atributs
+No té nous atributs.
+Constructors
+Un constructor amb paràmetres que rebi valors per als atributs heredats. Ha de fer servir el constructor de la superclasse.
+Mètodes
+calculatePerimeter() -> retorna un valor real (double) amb el perímetre del rectangle. Feu servir height com a l'alçada i width com a amplada del rectangle.
+calculateArea() ->retorna un valor real (double) amb l'àrea del rectangle. Feu servir height com a l'alçada i width com a amplada del rectangle.
+Classe Circle
+
+Atributs
+No té nous atributs.
+Constructors
+Un constructor amb paràmetres que rebi valors per als atributs heredats. Ha de fer servir el constructor de la superclasse.
+Mètodes
+calculatePerimeter() -> retorna un valor real (double) amb el perímetre del cercle. Feu servir height com a radi i width com també com a radi del triangle. Si els dos valors no són iguals, cal retornar un 0.0. Podeu fer servir 3.1415 com a valor per la constant PI.
+calculateArea() -> retorna un valor real (double) amb l'àrea del cercle. Feu servir height com a radi i width com també com a radi del triangle. Si els dos valors no són iguals, cal retornar un 0.0. Podeu fer servir 3.1415 com a valor per la constant PI.
+A continuació escriviu una classe Main que crei els següents objectes:
+
+Triangle t = new Triangle(6, 3);
+
+Rectangle r = new Rectangle (6, 4);
+
+Circle c = new Circle (1, 1);
+
+I que mostri per pantalla els següents resultats:
+The perimeter of a triangle of base 3.0 and height 6.0 is 9.0
+The area of a triangle of base 3.0 and height 6.0 is 9.0
+The perimeter of a rectangle of base 4.0 and height 6.0 is 20.0
+The area of a rectangle of base 4.0 and height 6.0 is 24.0
+The perimeter of a circle of radius 1.0 is 6.283
+The area of a circle of radius 1.0 is 3.1415
+
+code:
+
+public abstract class Figure {
+    protected double height;
+    protected double width;
+
+    public Figure(double height, double width) {
+        this.height = height;
+        this.width = width;
+    }
+
+    // Gets and sets
+    public double getHeight() {
+        return height;
+    }
+
+    public void setHeight(double height) {
+        this.height = height;
+    }
+
+    public double getWidth() {
+        return width;
+    }
+
+    public void setWidth(double width) {
+        this.width = width;
+    }
+
+    // Abstract methods
+    public abstract double calculatePerimeter();
+    public abstract double calculateArea();
+}
+
+public class Triangle extends Figure {
+    public Triangle(double height, double width) {
+        super(height, width);
+    }
+
+    @Override
+    public double calculatePerimeter() {
+        return width + width + width;
+    }
+
+    @Override
+    public double calculateArea() {
+        return 0.5 * height * width;
+    }
+}
+
+public class Rectangle extends Figure {
+    public Rectangle(double height, double width) {
+        super(height, width);
+    }
+
+    @Override
+    public double calculatePerimeter() {
+        return 2 * (height + width);
+    }
+
+    @Override
+    public double calculateArea() {
+        return height * width;
+    }
+}
+
+public class Circle extends Figure {
+    public Circle(double height, double width) {
+        super(height, width);
+    }
+
+    @Override
+    public double calculatePerimeter() {
+        if (height == width) {
+            return 2 * 3.1415 * height;
+        } else {
+            return 0.0;
+        }
+    }
+
+    @Override
+    public double calculateArea() {
+        if (height == width) {
+            return Math.PI * Math.pow(height, 2);
+        } else {
+            return 0.0;
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Triangle t = new Triangle(6, 3);
+        Rectangle r = new Rectangle(6, 4);
+        Circle c = new Circle(1, 1);
+
+        System.out.println("The perimeter of a triangle of base " + t.getWidth() + " and height " + t.getHeight() + " is " + t.calculatePerimeter());
+        System.out.println("The area of a triangle of base " + t.getWidth() + " and height " + t.getHeight() + " is " + t.calculateArea());
+        System.out.println("The perimeter of a rectangle of base " + r.getWidth() + " and height " + r.getHeight() + " is " + r.calculatePerimeter());
+        System.out.println("The area of a rectangle of base " + r.getWidth() + " and height " + r.getHeight() + " is " + r.calculateArea());
+        System.out.println("The perimeter of a circle of radius " + c.getHeight() + " is " + c.calculatePerimeter());
+        System.out.println("The area of a circle of radius " + c.getHeight() + " is " + c.calculateArea());
+    }
+}
