@@ -1,0 +1,657 @@
+Anem a construir un programa que mantingui la informació dels personatges d'una partida de rol.
+
+Inicialment, crearem una classe abstract Player que contindrà el següent:
+
+Atributs (tots han de ser protected)
+PlayerName -> una cadena amb el nom del jugador
+CharacterName -> una cadena amb el nom del personatge jugador
+Level -> un enter amb el nivell del personatge
+XP -> un enter amb els punts d'experiència del jugador
+HP -> un enter amb els punts de vida del jugador
+Constants
+BaseXP -> una constant privada, static i final amb valor 0.
+BaseLevel -> una constant privada, static i final amb valor 1.
+BaseHP -> una constant privada, static i final amb valor 100.
+Constructors
+Un constructor amb paràmetres que rebi el nom del jugador i el nom del personatge i inicii la resta d'atributs als valors per defecte (constants).
+Un constructor amb paràmetres que rebi valors per tots els atributs.
+Mètodes
+Gets i sets per cada atribut. 
+gainXP ( int value ) -> mètode abstracte que no retorna res.
+toString () -> aquest mètode retorna una cadena amb la informació del personatge.
+A continuació cal crear subclasses de Player, cadascuna amb les seves particularitats:
+
+Classe Warrior
+
+Atributs
+CP -> enter amb el poder de combat del personatge.
+DP -> enter amb el valor de defensa del personage.
+Constants
+BaseCP -> una constant privada, static i final amb valor 1.
+BaseDP -> una constant privada, static i final amb valor 1.
+Constructors
+Un constructor amb paràmetres que rebi el nom del jugador i el nom del personatge i inicii la resta d'atributs als valors per defecte (constants). Ha de fer servir el constructor de la superclasse.
+Un constructor amb paràmetres que rebi valors per tots els atributs. Ha de fer servir el constructor de la superclasse.
+Mètodes
+Gets i sets per cada atribut. 
+gainXP ( int value ) -> aquest mètode és abstracte. Rep un valor de punts d'experiència que ha de sumar als XP del personatge. Si el (level * XP) supera el (level * 1000 * level/4), aleshores cal sumar 1 al level del personatge (per exemple, si el level és 1 i els punts són 1700, com que (1 * 1700)  és més gran que (1 * 1000 * 0.25), el personatge passa a nivell 2). Cada cop que es canvii de nivell el CP i el DP han de créixer 1, i els HP han d'augmentar en 10.
+attack ( int enemyDP ) -> aquest mètode retorna un booleà que indica si el guerrer ha aconseguit ferir a l'enemic. Per esbrinar-ho cal que el CP del guerrer sigui com a mínim 2 vegades més gran que el enemyDP. Si aconsegueix atacar, el mètode ha de mostrar per pantalla el missatge "Attack succeeded" i retornar true. Si no aconsegueix atacar, el mètode ha de mostrar per pantalla el missatge "Attack failed" i retornar false.
+toString () -> aquest mètode retorna una cadena amb la informació del guerrer. Ha de fer servir el mètode de la superclasse i completar-lo amb les dades del guerrer.
+Classe Burglar
+
+Atributs
+AP -> enter amb el valor d'agilitat del personatge.
+Constants
+BaseAP -> una constant privada, static i final amb valor 1.
+Constructors
+Un constructor amb paràmetres que rebi el nom del jugador i el nom del personatge i inicii la resta d'atributs als valors per defecte (constants). Ha de fer servir el constructor de la superclasse.
+Un constructor amb paràmetres que rebi valors per tots els atributs. Ha de fer servir el constructor de la superclasse.
+Mètodes
+Gets i sets per cada atribut. 
+gainXP ( int value ) -> aquest mètode és abstracte. Rep un valor de punts d'experiència que ha de sumar als XP del personatge. Si el (level * XP) supera el (level * 1000), aleshores cal sumar 1 al level del personatge (per exemple, si el level és 1 i els punts són 1700, com que (1 * 1700)  és més gran que (1 * 1000), el personatge passa a nivell 2). Cada cop que es canvii de nivell el AP ha de créixer 1, i els HP han d'augmentar en 8.
+disableTrap ( int trapDifficulty ) -> aquest mètode retorna un booleà que indica si el lladre ha pogut deshabilitar una trampa. Per desbailitar una trampa, el (level * AP) del lladre ha de ser més gran que el valor trapDifficulty. Si el lladre aconsegueix desactivar la trampa, el mètode ha de mostrar el missatge "Trap disabled" i retornar true. Si no aconsegueix desactivar la trampa, el mètode ha de mostrar el missatge "Trap activated" , restar 10 als HP del lladre i retornar false.
+toString () -> aquest mètode retorna una cadena amb la informació del lladre. Ha de fer servir el mètode de la superclasse i completar-lo amb les dades del lladre.
+Classe Wizard
+
+Atributs
+MP -> enter amb el poder màgic del personatge.
+MPoints -> enter amb el valor de punts de màgia del personatge.
+availableMPoints -> enter amb el valor de punts de màgia disponibles del personatge.
+Constants
+BaseMP -> una constant privada, static i final amb valor 1.
+BaseMPoints -> una constant privada, static i final amb valor 10.
+Constructors
+Un constructor amb paràmetres que rebi el nom del jugador i el nom del personatge i inicii la resta d'atributs als valors per defecte (constants). Ha de fer servir el constructor de la superclasse. Els availableMPoints inicials són iguals als MPoints.
+Un constructor amb paràmetres que rebi valors per tots els atributs (excepte els availableMPoints). Ha de fer servir el constructor de la superclasse. Els availableMPoints inicials són iguals als MPoints.
+Mètodes
+Gets i sets per cada atribut. 
+gainXP ( int value ) -> aquest mètode és abstracte. Rep un valor de punts d'experiència que ha de sumar als XP del personatge. Si el (level * XP) supera el (level * 1000 * level/2), aleshores cal sumar 1 al level del personatge (per exemple, si el level és 1 i els punts són 1001, com que (1 * 1700)  és més gran que (1 * 1000 * 0.5), el personatge passa a nivell 2). Cada cop que es canvii de nivell el MP ha de créixer 1 i el MPoints ha de créixer en 5, i els HP han d'augmentar en 5. Els availableMPoints inicials són iguals als MPoints.
+castSpell ( int spellDifficulty, int spellCost ) -> aquest mètode retona un booleà que indica si el mag ha aconseguit llançar l'encanteri. En primer lloc, cal que els availableMPoints del mag siguin més gran o igual l'spellCost. Si no té prou punts, el mètode mostrarà per pantalla el missatge ""Not enough magical energy". Si el mag té prou punts, per esbrinar si s'ha pogut llançar l'encanteri cal que el MP del mag sigui com a mínim 2 vegades més gran que el spellDifficulty. Si l'ha pogut llançar el mètode mostrarà el missatge "Spell casting succeeded" i, si no l'ha pogut llançar, mostrarà el missatge "Spell casting failed". A més, si es tenen prou punts disponibles, s'hagi llançat o no, cal reduir els availableMPoints del mag en la quantitat spellCost.
+rest ( int time ) -> aquest mètode regenera els availableMPoints del mag. El mètode ha de mostrar per pantalla el missatge "Resting". A continuació, si el valor del time és més petit que 12, cal augmentar els availableMPoints en la meitat dels MPoints del personatge (sense sobrepassar els MPoints). Si el valor és 12 o més gran, cal posar els availableMPoints a MPoints.
+toString () -> aquest mètode retorna una cadena amb la informació del mag. Ha de fer servir el mètode de la superclasse i completar-lo amb les dades del mag.
+A continuació cal crear una clase Main amb els següents continguts (assegura't que tot funcioni correctament):
+
+public class Main {
+    public static void main (String[] args) {
+       Warrior w1 = new Warrior ("Code1", "Tanis");
+       Warrior w2 = new Warrior ("Code2", "Aragorn", 10, 20000, 100, 15, 15);
+
+       Burglar b1 = new Burglar ("Code3", "Bilbo");
+       Burglar b2 = new Burglar ("Code4", "Tasslehoff", 10, 20000, 100, 15);
+
+       Wizard wiz1 = new Wizard ("Code5", "Raistlin");
+       Wizard wiz2 = new Wizard ("Code6", "Gandalf", 10, 20000, 100, 15, 100);
+
+       w1.gainXP(2000);
+       w2.gainXP(2000);
+       b1.gainXP(2000);
+       b2.gainXP(2000);
+       wiz1.gainXP(2000);
+       wiz2.gainXP(2000);
+
+       System.out.println(w1);
+       System.out.println(w2);
+       System.out.println(b1);
+       System.out.println(b2);
+       System.out.println(wiz1);
+       System.out.println(wiz2);
+
+       System.out.println("Tanis is attacking enemy with DP 5");
+       w1.attack(10);
+       System.out.println("Aragorn is attacking enemy with DP 5");
+       w2.attack(10);
+
+       System.out.println("Bilbo is trying to disable a trap of difficulty 5");
+       b1.disableTrap(5);
+       System.out.println("Tasslehoff is trying to disable a trap of difficulty 5");
+       b2.disableTrap(5);
+
+       System.out.println(b1);
+       System.out.println(b2);
+
+       System.out.println("Raistlin is trying to cast a spell of difficulty 10 with a cost of 1000");
+       wiz1.castSpell(10, 1000);
+       System.out.println("Raistlin is trying to cast a spell of difficulty 5 with a cost of 10");
+       wiz1.castSpell(5, 10);
+       System.out.println("Gandalf is trying to cast a spell of difficulty 5 with a cost of 10");
+       wiz2.castSpell(5, 10);
+
+       System.out.println(wiz1);
+       System.out.println(wiz2);
+    }
+}
+
+L'execució d'aquest codi hauria de generar per pantalla el següent resultat.
+
+Player Name: Code1
+
+Character Name: Tanis
+
+Character Level: 2
+
+Character XP: 2000
+
+Character HP: 110
+
+Character type: Warrior
+
+Combat Power: 2
+
+Combat Defense: 2
+
+Player Name: Code2
+
+Character Name: Aragorn
+
+Character Level: 11
+
+Character XP: 22000
+
+Character HP: 110
+
+Character type: Warrior
+
+Combat Power: 16
+
+Combat Defense: 16
+
+Player Name: Code3
+
+Character Name: Bilbo
+
+Character Level: 2
+
+Character XP: 2000
+
+Character HP: 108
+
+Character type: Burglar
+
+Agility Power: 2
+
+Player Name: Code4
+
+Character Name: Tasslehoff
+
+Character Level: 11
+
+Character XP: 22000
+
+Character HP: 108
+
+Character type: Burglar
+
+Agility Power: 16
+
+Player Name: Code5
+
+Character Name: Raistlin
+
+Character Level: 2
+
+Character XP: 2000
+
+Character HP: 105
+
+Character type: Wizard
+
+Magical Power: 2
+
+Maximum Magical Points: 15
+
+Available Magical Points: 15
+
+Player Name: Code6
+
+Character Name: Gandalf
+
+Character Level: 11
+
+Character XP: 22000
+
+Character HP: 105
+
+Character type: Wizard
+
+Magical Power: 16
+
+Maximum Magical Points: 105
+
+Available Magical Points: 105
+
+Tanis is attacking enemy with DP 5
+
+Attack failed
+
+Aragorn is attacking enemy with DP 5
+
+Attack failed
+
+Bilbo is trying to disable a trap of difficulty 5
+
+Trap activated
+
+Tasslehoff is trying to disable a trap of difficulty 5
+
+Trap disabled
+
+Player Name: Code3
+
+Character Name: Bilbo
+
+Character Level: 2
+
+Character XP: 2000
+
+Character HP: 98
+
+Character type: Burglar
+
+Agility Power: 2
+
+Player Name: Code4
+
+Character Name: Tasslehoff
+
+Character Level: 11
+
+Character XP: 22000
+
+Character HP: 108
+
+Character type: Burglar
+
+Agility Power: 16
+
+Raistlin is trying to cast a spell of difficulty 10 with a cost of 1000
+
+Not enough magical energy
+
+Raistlin is trying to cast a spell of difficulty 5 with a cost of 10
+
+Spell casting failed
+
+Gandalf is trying to cast a spell of difficulty 5 with a cost of 10
+
+Spell casting succeeded
+
+Player Name: Code5
+
+Character Name: Raistlin
+
+Character Level: 2
+
+Character XP: 2000
+
+Character HP: 105
+
+Character type: Wizard
+
+Magical Power: 2
+
+Maximum Magical Points: 15
+
+Available Magical Points: 5
+
+Player Name: Code6
+
+Character Name: Gandalf
+
+Character Level: 11
+
+Character XP: 22000
+
+Character HP: 105
+
+Character type: Wizard
+
+Magical Power: 16
+
+Maximum Magical Points: 105
+
+Available Magical Points: 95
+
+code:
+
+abstract class Player {
+    protected String playerName;
+    protected String characterName;
+    protected int level;
+    protected int xp;
+    protected int hp;
+
+    private static final int BaseXP = 0;
+    private static final int BaseLevel = 1;
+    private static final int BaseHP = 100;
+
+    public Player(String playerName, String characterName) {
+        this.playerName = playerName;
+        this.characterName = characterName;
+        this.level = BaseLevel;
+        this.xp = BaseXP;
+        this.hp = BaseHP;
+    }
+
+    public Player(String playerName, String characterName, int level, int xp, int hp) {
+        this.playerName = playerName;
+        this.characterName = characterName;
+        this.level = level;
+        this.xp = xp;
+        this.hp = hp;
+    }
+
+    public String getPlayerName() {
+        return playerName;
+    }
+
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
+    }
+
+    public String getCharacterName() {
+        return characterName;
+    }
+
+    public void setCharacterName(String characterName) {
+        this.characterName = characterName;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public int getXp() {
+        return xp;
+    }
+
+    public void setXp(int xp) {
+        this.xp = xp;
+    }
+
+    public int getHp() {
+        return hp;
+    }
+
+    public void setHp(int hp) {
+        this.hp = hp;
+    }
+
+    public abstract void gainXP(int value);
+
+    @Override
+    public String toString() {
+        return "Player Name: " + playerName + "\n" +
+                "Character Name: " + characterName + "\n" +
+                "Character Level: " + level + "\n" +
+                "Character XP: " + xp + "\n" +
+                "Character HP: " + hp + "\n";
+    }
+}
+
+class Warrior extends Player {
+    private int cp;
+    private int dp;
+
+    private static final int BaseCP = 1;
+    private static final int BaseDP = 1;
+
+    public Warrior(String playerName, String characterName) {
+        super(playerName, characterName);
+        this.cp = BaseCP;
+        this.dp = BaseDP;
+    }
+
+    public Warrior(String playerName, String characterName, int level, int xp, int hp, int cp, int dp) {
+        super(playerName, characterName, level, xp, hp);
+        this.cp = cp;
+        this.dp = dp;
+    }
+
+    public int getCp() {
+        return cp;
+    }
+
+    public void setCp(int cp) {
+        this.cp = cp;
+    }
+
+    public int getDp() {
+        return dp;
+    }
+
+    public void setDp(int dp) {
+        this.dp = dp;
+    }
+
+    @Override
+    public void gainXP(int value) {
+        xp += value;
+        if ((level * xp) > (level * 1000 * level / 4)) {
+            level++;
+            cp++;
+            dp++;
+            hp += 10;
+        }
+    }
+
+    public boolean attack(int enemyDP) {
+        if (cp >= (enemyDP * 2)) {
+            System.out.println("Attack succeeded");
+            return true;
+        } else {
+            System.out.println("Attack failed");
+            return false;
+        }
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() +
+                "Character type: Warrior\n" +
+                "Combat Power: " + cp + "\n" +
+                "Combat Defense: " + dp + "\n";
+    }
+}
+
+class Burglar extends Player {
+    private int ap;
+
+    private static final int BaseAP = 1;
+
+    public Burglar(String playerName, String characterName) {
+        super(playerName, characterName);
+        this.ap = BaseAP;
+    }
+
+    public Burglar(String playerName, String characterName, int level, int xp, int hp, int ap) {
+        super(playerName, characterName, level, xp, hp);
+        this.ap = ap;
+    }
+
+    public int getAp() {
+        return ap;
+    }
+
+    public void setAp(int ap) {
+        this.ap = ap;
+    }
+
+    @Override
+    public void gainXP(int value) {
+        xp += value;
+        if ((level * xp) > (level * 1000)) {
+            level++;
+            ap++;
+            hp += 8;
+        }
+    }
+
+    public boolean disableTrap(int trapDifficulty) {
+        if (level * ap > trapDifficulty) {
+            System.out.println("Trap disabled");
+            return true;
+        } else {
+            System.out.println("Trap activated");
+            hp -= 10;
+            return false;
+        }
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() +
+                "Character type: Burglar\n" +
+                "Agility Power: " + ap + "\n";
+    }
+}
+
+class Wizard extends Player {
+    private int mp;
+    private int mPoints;
+    private int availableMPoints;
+
+    private static final int BaseMP = 1;
+    private static final int BaseMPoints = 10;
+
+    public Wizard(String playerName, String characterName) {
+        super(playerName, characterName);
+        this.mp = BaseMP;
+        this.mPoints = BaseMPoints;
+        this.availableMPoints = this.mPoints;
+    }
+
+    public Wizard(String playerName, String characterName, int level, int xp, int hp, int mp, int mPoints, int availableMPoints) {
+        super(playerName, characterName, level, xp, hp);
+        this.mp = mp;
+        this.mPoints = mPoints;
+        this.availableMPoints = availableMPoints;
+    }
+
+    public int getMp() {
+        return mp;
+    }
+
+    public void setMp(int mp) {
+        this.mp = mp;
+    }
+
+    public int getmPoints() {
+        return mPoints;
+    }
+
+    public void setmPoints(int mPoints) {
+        this.mPoints = mPoints;
+    }
+
+    public int getAvailableMPoints() {
+        return availableMPoints;
+    }
+
+    public void setAvailableMPoints(int availableMPoints) {
+        this.availableMPoints = availableMPoints;
+    }
+
+    @Override
+    public void gainXP(int value) {
+        xp += value;
+        if ((level * xp) > (level * 1000 * level / 2)) {
+            level++;
+            mp++;
+            mPoints += 5;
+            hp += 5;
+            availableMPoints = mPoints;
+        }
+    }
+
+    public boolean castSpell(int spellDifficulty, int spellCost) {
+        if (availableMPoints >= spellCost) {
+            if (mp >= (spellDifficulty * 2)) {
+                System.out.println("Spell casting succeeded");
+                availableMPoints -= spellCost;
+                return true;
+            } else {
+                System.out.println("Spell casting failed");
+                availableMPoints -= spellCost;
+                return false;
+            }
+        } else {
+            System.out.println("Not enough magical energy");
+            return false;
+        }
+    }
+
+    public void rest(int time) {
+        System.out.println("Resting");
+        if (time < 12) {
+            availableMPoints += mPoints / 2;
+            if (availableMPoints > mPoints) {
+                availableMPoints = mPoints;
+            }
+        } else {
+            availableMPoints = mPoints;
+        }
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() +
+                "Character type: Wizard\n" +
+                "Magical Power: " + mp + "\n" +
+                "Maximum Magical Points: " + mPoints + "\n" +
+                "Available Magical Points: " + availableMPoints + "\n";
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Warrior w1 = new Warrior("Code1", "Tanis");
+        Warrior w2 = new Warrior("Code2", "Aragorn", 10, 20000, 100, 15, 15);
+
+        Burglar b1 = new Burglar("Code3", "Bilbo");
+        Burglar b2 = new Burglar("Code4", "Tasslehoff", 10, 20000, 100, 15);
+
+        Wizard wiz1 = new Wizard("Code5", "Raistlin");
+        Wizard wiz2 = new Wizard("Code6", "Gandalf", 10, 20000, 100, 15, 100, 100);
+
+        w1.gainXP(2000);
+        w2.gainXP(2000);
+        b1.gainXP(2000);
+        b2.gainXP(2000);
+        wiz1.gainXP(2000);
+        wiz2.gainXP(2000);
+
+        System.out.println(w1);
+        System.out.println(w2);
+        System.out.println(b1);
+        System.out.println(b2);
+        System.out.println(wiz1);
+        System.out.println(wiz2);
+
+        System.out.println("Tanis is attacking enemy with DP 5");
+        w1.attack(5);
+        System.out.println("Aragorn is attacking enemy with DP 5");
+        w2.attack(5);
+
+        System.out.println("Bilbo is trying to disable a trap of difficulty 5");
+        b1.disableTrap(5);
+        System.out.println("Tasslehoff is trying to disable a trap of difficulty 5");
+        b2.disableTrap(5);
+
+        System.out.println(b1);
+        System.out.println(b2);
+
+        System.out.println("Raistlin is trying to cast a spell of difficulty 10 with a cost of 1000");
+        wiz1.castSpell(10, 1000);
+        System.out.println("Raistlin is trying to cast a spell of difficulty 5 with a cost of 10");
+        wiz1.castSpell(5, 10);
+        System.out.println("Gandalf is trying to cast a spell of difficulty 5 with a cost of 10");
+        wiz2.castSpell(5, 10);
+
+        System.out.println(wiz1);
+        System.out.println(wiz2);
+    }
+}
