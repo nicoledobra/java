@@ -1,0 +1,210 @@
+Crea una nova interfície Java de nom Vehicle amb el següent contingut:
+
+Atributs
+No té atributs
+Constants
+maxSpeed -> una constant final i static amb valor inicial 120.
+Mètodes
+slowDown ( int quantity ) -> aquest mètode retorna una cadena de text. 
+speedUp ( int quantity ) -> aquest mètode retorna una cadena de text.
+A continuació crea una classe Car que implementi la interfície Vehicle i que tingui el següent contingut:
+
+Atributs
+speed -> un número enter amb la velocitat actual del cotxe.
+type -> una cadena de text amb el tipus de cotxe (dièsel / gasolina).
+model -> una cadena de text amb el model del cotxe.
+power -> un enter amb els cavalls del cotxe.
+Constants
+No hi ha constants.
+Constructors
+Un constructor que rebi com a paràmetre el tipus de cotxe, el model i cavalls. Ha d'iniciar la velocitat del cotxe a 0.
+Mètodes
+Gets i sets per a tots els atributs.
+slowDown ( int quantity ) -> aquest mètode ha de reduïr la velocitat del cotxe en la quantitat indicada pel paràmetre. Si en reduïr la velocitat, aquesta té un valor negatiu, ha de quedar a 0. Ha de retornar una cadena de text indicant que el cotxe ha frenat i la seva velocitat actual.
+speedUp ( int quantity ) -> aquest mètode ha d'augmentar la velocitat del cotxe en la quantitat indicada pel paràmetre. Si en augmentar la velocitat, aquesta té un valor per sobre de la constant maxSpeed, ha de quedar a maxSpeed. Ha de retornar una cadena de text indicant que el cotxe ha accelerat i la seva velocitat actual.
+Tot seguit crea una classe Motorbike que implementi la interfície Vehicle i que tingui el següent contingut:
+
+Atributs
+speed -> un número enter amb la velocitat actual de la moto.
+engineCapacity -> un enter de text amb la cilindrada de la moto.
+model -> una cadena de text amb el model de la moto.
+Constants
+No hi ha constants.
+Constructors
+Un constructor que rebi com a paràmetre el model i la cilindrada. Ha d'iniciar la velocitat de la moto a 0.
+Mètodes
+Gets i sets per a tots els atributs.
+slowDown ( int quantity ) -> aquest mètode ha de reduïr la velocitat de la moto en la quantitat indicada pel paràmetre. Si en reduïr la velocitat, aquesta té un valor negatiu, ha de quedar a 0. Ha de retornar una cadena de text indicant que la moto ha frenat i la seva velocitat actual.
+speedUp ( int quantity ) -> aquest mètode ha d'augmentar la velocitat de la moto en la quantitat indicada pel paràmetre. Si en augmentar la velocitat, aquesta té un valor per sobre de la constant maxSpeed, ha de quedar a maxSpeed. Ha de retornar una cadena de text indicant que la moto ha accelerat i la seva velocitat actual.
+Finalment, crea una classe Main que crei els dos objectes següents i dugui a terme les següents operacions:
+
+Car c = new Car ("Petrol", "CodeCar", 150);
+
+Motorbike m = new Motorbike ("CodeMoto", 125); 
+
+System.out.println (c.speedUp (150));
+
+System.out.println (m.speedUp (50));
+
+System.out.println (c.slowDown (30));
+
+System.out.println (m.slowDown (120));
+
+i que generi per pantalla els següents missatges:
+
+The car has speed up and its current speed is 120 km / h.
+
+The motorbike has speed up and its current speed is 50 km / h.
+
+The car has slowed down and its current speed is 90 km / h.
+
+The motorbike has slowed down and its current speed is 0 km / h.
+
+code:// Interfície Vehicle
+
+public interface Vehicle {
+
+    final static int maxSpeed = 120; // Constant final i estàtica
+
+    String slowDown(int quantity);
+
+    String speedUp(int quantity);
+}
+
+// Classe Car
+
+class Car implements Vehicle {
+
+    private int speed;
+    private String type;
+    private String model;
+    private int power;
+
+    public Car(String type, String model, int power) {
+        this.speed = 0;
+        this.type = type;
+        this.model = model;
+        this.power = power;
+    }
+
+    // Getters i setters per a tots els atributs
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public int getPower() {
+        return power;
+    }
+
+    public void setPower(int power) {
+        this.power = power;
+    }
+
+    @Override
+    public String slowDown(int quantity) {
+        int newSpeed = speed - quantity;
+        speed = Math.max(newSpeed, 0); // Assegura que la velocitat no sigui negativa
+        return "The car has slowed down and its current speed is " + speed + " km/h";
+    }
+
+    @Override
+    public String speedUp(int quantity) {
+        int newSpeed = speed + quantity;
+        speed = Math.min(newSpeed, maxSpeed); // Assegura que la velocitat no superi maxSpeed
+        return "The car has speed up and its current speed is " + speed + " km/h";
+    }
+}
+
+// Classe Motorbike
+
+class Motorbike implements Vehicle {
+
+    private int speed;
+    private int engineCapacity;
+    private String model;
+
+    public Motorbike(String model, int engineCapacity) {
+        this.speed = 0;
+        this.engineCapacity = engineCapacity;
+        this.model = model;
+    }
+
+    // Getters i setters per a tots els atributs
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+
+    public int getEngineCapacity() {
+        return engineCapacity;
+    }
+
+    public void setEngineCapacity(int engineCapacity) {
+        this.engineCapacity = engineCapacity;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    @Override
+    public String slowDown(int quantity) {
+        int newSpeed = speed - quantity;
+        speed = Math.max(newSpeed, 0); // Assegura que la velocitat no sigui negativa
+        return "The motorbike has slowed down and its current speed is " + speed + " km/h";
+    }
+
+    @Override
+    public String speedUp(int quantity) {
+        int newSpeed = speed + quantity;
+        speed = Math.min(newSpeed, maxSpeed); // Assegura que la velocitat no superi maxSpeed
+        return "The motorbike has speed up and its current speed is " + speed + " km/h";
+    }
+}
+
+// Classe Main
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Car c = new Car("Petrol", "CodeCar", 150);
+        Motorbike m = new Motorbike("CodeMoto", 125);
+
+        System.out.println(c.speedUp(150));
+        System.out.println(m.speedUp(50));
+        System.out.println(c.slowDown(30));
+        System.out.println(m.slowDown(120));
+    }
+}
+
+
