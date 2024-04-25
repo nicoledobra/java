@@ -1,0 +1,266 @@
+En primer lloc, per tal de poder llançar excepcions en determinades ocasions, caldrà que el nostre programa comenci amb la següent instrucció:
+
+import java.util.NoSuchElementException;
+
+Després, crea una interfície Java anomenada Set (col·lecció) que contingui el següent:
+
+Atributs
+No té atributs.
+Constructors
+No té constructors.
+Mètodes
+isEmpty () -> aquest mètode retorna cert si la col·lecció està buida i fals en cas contrari.
+extract () -> aquest mètode retorna un Object. Retorna i elimina el primer element de la col·lecció.
+first () -> aquest mètode retorna un Object. Retorna el primer element de la col·lecció.
+add ( Object o ) -> aquest mètode afegeix (per l'extrem que correspongui) un Object i retorna cert si ha pogut afegir l'element i fals en cas contrari.
+A continuació escriu una classe Stack (pila) que implementi aquesta interfície:
+
+Atributs
+array -> un array d'Object que servirà per emmagatzemar els elements de la pila.
+counter -> un enter que serveix per comptar el nombre d'elements de la pila.
+maxSize -> un enter amb el nombre màxim d'elements que pot contenir la pila.
+Constructor
+Un constructor amb paràmetres que rep un enter amb el nombre màxim d'elements que pot contenir la pila. S'ha de fer servir aquest valor per iniciar l'array d'objectes.
+Mètodes
+isEmpty () -> aquest mètode retorna cert si el nombre d'elements de la pila és 0.
+extract () -> aquest mètode retorna un Object. Retorna i elimina el primer element de la col·lecció. Si la pila és buida retorna una excepció (amb la instrucció throw new NoSuchElementException();). Si la pila no és buida, primer haurà de decrementar el comptador en una unitat i, a continuació, retornar l'element que estigui a la posició indicada pel comptador d'elements.
+first () -> aquest mètode retorna un Object. Retorna el primer element de la col·lecció.Si la pila és buida retorna una excepció (amb la instrucció throw new NoSuchElementException();). Si la pila no és buida, retorna l'element que estigui a la posició indicada pel comptador d'elements - 1.
+add ( Object o) -> aquest mètode primer comprova que el nou element cap a la pila (és a dir, encara no hem arribat a la mida màxima). Si cap, col·loca l'Objecte o a la posició indicada pel comptador d'elements, i després incrementa aquest comptador en un.
+toString () -> aquest mètode retorna un String amb la pila en un format que s'entengui quan aquesta es mostri per pantalla. Per exemple, podríem mostrar els elements en ordre invers un apilat sobre l'altre. Podem crear un String buit, visitar cada element i incorporar-lo a l'String seguit d'un salt de línia "\n" (per eliminar l'últim salt de línia, es pot fer servir el mètode substring(index, length) dels String).
+Finalment, crea una nova classe Main que dugui a terme les següents instruccions:
+
+Stack s = new Stack(5);
+
+s.add(1);
+
+s.add(10);
+
+s.add(100);
+
+s.add(1000);
+
+System.out.println(s);
+
+System.out.println("The first element of the stack is " + s.first());
+
+s.extract();
+
+s.extract();
+
+System.out.println("The first element of the stack is " + s.first());
+
+System.out.println(s);
+
+El resultat que s'hauria de veure per pantalla la següent sortida:
+
+1000
+
+100
+
+10
+
+1
+
+The first element of the stack is 1000
+
+The first element of the stack is 10
+
+10
+
+1
+
+code:
+
+public interface Set {
+
+    // Comprova si la col·lecció està buida
+    boolean isEmpty();
+
+    // Extreu i retorna el primer element de la col·lecció
+    Object extract() throws NoSuchElementException;
+
+    // Retorna el primer element de la col·lecció
+    Object first() throws NoSuchElementException;
+
+    // Afegeix un objecte a la col·lecció
+    boolean add(Object o);
+}
+public class Stack implements Set {
+
+    private Object[] array; // Array per emmagatzemar els elements de la pila
+    private int counter; // Comptador del nombre d'elements a la pila
+    private int maxSize; // Mida màxima de la pila
+
+    // Constructor amb paràmetre que defineix la mida màxima de la pila
+    public Stack(int maxSize) {
+        this.array = new Object[maxSize];
+        this.counter = 0;
+        this.maxSize = maxSize;
+    }
+
+    // Comprova si la pila està buida
+    @Override
+    public boolean isEmpty() {
+        return counter == 0;
+    }
+
+    // Extreu i retorna el primer element de la pila
+    @Override
+    public Object extract() throws NoSuchElementException {
+        if (isEmpty()) {
+            throw new NoSuchElementException();
+        }
+
+        counter--;
+        Object element = array[counter];
+        array[counter] = null; // Per evitar fuites de memòria
+        return element;
+    }
+
+    // Retorna el primer element de la pila
+    @Override
+    public Object first() throws NoSuchElementException {
+        if (isEmpty()) {
+            throw new NoSuchElementException();
+        }
+
+        return array[counter - 1];
+    }
+
+    // Afegeix un objecte a la pila
+    @Override
+    public boolean add(Object o) {
+        if (counter == maxSize) {
+            return false; // La pila està plena
+        }
+
+        array[counter] = o;
+        counter++;
+        return true;
+    }
+
+    // Retorna una representació en String de la pila
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = counter - 1; i >= 0; i--) {
+            sb.append(array[i]).append("\n");
+        }
+
+        // Elimina el salt de línia final
+        return sb.substring(0, sb.length() - 1);
+    }
+}
+public class Main {
+
+    public static void main(String[] args) {
+        // Crea una pila amb capacitat per a 5 elements
+        Stack s = new Stack(5);
+
+        // Afegeix elements a la pila
+        s.add(1);
+        s.add(10);
+        s.add(100);
+        s.add(1000);
+
+        // Mostra la pila per pantalla
+        System.out.println(s);
+
+        // Mostra el primer element de la pila
+        System.out.println("The first element of the stack is " + s.first());
+
+        // Extreu dos elements de la pila
+        s.extract();
+        s.extract();
+
+        // Mostra el primer element de la pila després d'extreure dos elements
+        System.out.println("The first element of the stack is " + s.first());
+
+        // Mostra la pila per pantalla després d'extreure dos elements
+        System.out.println(s);
+    }
+}
+
+
+import java.util.NoSuchElementException;
+
+interface Set {
+    boolean isEmpty();
+    Object extract();
+    Object first();
+    boolean add(Object o);
+}
+
+class Stack implements Set {
+    private Object[] array;
+    private int counter;
+    private int maxSize;
+
+    public Stack(int maxSize) {
+        this.array = new Object[maxSize];
+        this.counter = 0;
+        this.maxSize = maxSize;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return counter == 0;
+    }
+
+    @Override
+    public Object extract() {
+        if (isEmpty()) {
+            throw new NoSuchElementException();
+        }
+        counter--;
+        return array[counter];
+    }
+
+    @Override
+    public Object first() {
+        if (isEmpty()) {
+            throw new NoSuchElementException();
+        }
+        return array[counter - 1];
+    }
+
+    @Override
+    public boolean add(Object o) {
+        if (counter < maxSize) {
+            array[counter++] = o;
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        for (int i = counter - 1; i >= 0; i--) {
+            result.append(array[i]).append("\n");
+        }
+        return result.toString();
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Stack s = new Stack(5);
+
+        s.add(1);
+        s.add(10);
+        s.add(100);
+        s.add(1000);
+
+        System.out.println(s);
+        System.out.println("The first element of the stack is " + s.first());
+
+        s.extract();
+        s.extract();
+
+        System.out.println("The first element of the stack is " + s.first());
+        System.out.println(s);
+    }
+}
+
