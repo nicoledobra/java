@@ -1,0 +1,39 @@
+Crea una classe Java de nom Window que heredi de la classe JFrame.
+
+Aquesta classe ha de començar important els paquets necessaris per construir una GUI:
+
+import javax.swing.*;
+
+import java.awt.*;
+
+import java.awt.event.*;
+
+A continuació cal definir un constructor per aquesta classe que rebi com a paràmetre un String amb el títol per a la nova finestra que volem construir, i dos enters (amb l'amplada i l'alçada de la nova finestra). Aquest constructor ha de cridar al constructor de la 
+superclasse passant-li el títol i, després, ha d'establir la mida de la finestra a les donades com a paràmetre. També ha de definir com a operació per defecte sortir de l'aplicació en tancar la finestra (JFrame.EXIT_ON_CLOSE).
+
+code:
+
+import javax.swing.*;
+import java.awt.*;
+
+public class Window extends JFrame {
+    
+    public Window(String title, int width, int height) {
+        // Crida al constructor de la superclasse passant-li el títol
+        super(title);
+        
+        // Estableix la mida de la finestra
+        setSize(width, height);
+        
+        // Defineix l'operació per defecte en tancar la finestra
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+    
+    public static void main(String[] args) {
+        // Crea una nova finestra
+        Window window = new Window("My First GUI", 200, 200);
+        
+        // Fa visible la finestra
+        window.setVisible(true);
+    }
+}
