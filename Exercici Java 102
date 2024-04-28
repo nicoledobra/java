@@ -1,0 +1,34 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class Window extends JFrame {
+
+    public Window(String title, int width, int height) {
+        super(title); // Crida al constructor de la superclasse
+
+        // Estableix la mida de la finestra
+        setSize(width, height);
+
+        // Defineix l'operació per defecte al tancar la finestra
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // Crea un panell contenidor i estableix el seu layout
+        Container cp = getContentPane();
+        cp.setLayout(new FlowLayout());
+
+        // Crea un JToggleButton amb el text "Press me"
+        JToggleButton button = new JToggleButton("Press me");
+
+        // Afegeix el botó al panell contenidor
+        cp.add(button);
+    }
+
+    public static void main(String[] args) {
+        // Crea un nou objecte de la classe Window
+        Window window = new Window("Toggle Button Window", 300, 75);
+
+        // Fa visible la finestra
+        window.setVisible(true);
+    }
+}
