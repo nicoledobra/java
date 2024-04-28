@@ -1,0 +1,54 @@
+Crea una classe Java de nom GridTest que heredi de la classe JFrame.
+
+Aquesta classe ha de començar important els paquets necessaris per construir una GUI:
+
+import javax.swing.*;
+
+import java.awt.*;
+
+import java.awt.event.*;
+
+A continuació cal definir un constructor per aquesta classe que rebi com a paràmetre un String amb el títol per a la nova finestra que volem construir i dos valors enters (que serviran per establir l'amplada i l'alçada de la finestra). Aquest constructor ha de cridar al constructor de la superclasse passant-li el títol i, després, ha d'establir la mida de la finestra als valors passat per paràmetre. També ha de definir com a operació per defecte sortir de l'aplicació en tancar la finestra (JFrame.EXIT_ON_CLOSE). El constructor també ha de crear un panell contenidor i un GridLayout. Aquest contenidor ha d'estar definit amb 4 files i 3 columnes. Estableix també una separació vertical i una separació horitzontal de 15.
+
+A continuació, crea dotze JButtons (pots veure els textos per als botons a la imatge resultat que acompanya aquest enunciat). Cal afegir els 12 botons al contenidor amb el mètode add ().
+
+Finalment crea una nova classe de nom Main que crei un nou objecte de la classe GridTest amb el títol "Grid Window Example" i de mida 400 x 400.  Per acabar cal fer visible la finestra
+
+code:
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class GridTest extends JFrame {
+
+    public GridTest(String title, int width, int height) {
+        super(title); // Crida al constructor de la superclasse
+
+        // Estableix la mida de la finestra
+        setSize(width, height);
+
+        // Defineix l'operació per defecte al tancar la finestra
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // Crea un panell contenidor i estableix el seu layout
+        Container cp = getContentPane();
+        GridLayout layout = new GridLayout(4, 3, 15, 15); // 4 files, 3 columnes, separació de 15 píxels
+        cp.setLayout(layout);
+
+        // Crea botons
+        String[] buttonTexts = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"};
+        for (String text : buttonTexts) {
+            JButton button = new JButton(text);
+            cp.add(button);
+        }
+    }
+
+    public static void main(String[] args) {
+        // Crea un nou objecte de la classe GridTest
+        GridTest window = new GridTest("Grid Window Example", 400, 400);
+
+        // Fa visible la finestra
+        window.setVisible(true);
+    }
+}
