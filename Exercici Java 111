@@ -1,0 +1,57 @@
+Crea una classe Java de nom BorderLayoutTest que heredi de la classe JFrame.
+
+Aquesta classe ha de començar important els paquets necessaris per construir una GUI:
+
+import javax.swing.*;
+
+import java.awt.*;
+
+import java.awt.event.*;
+
+A continuació cal definir un constructor per aquesta classe que rebi com a paràmetre un String amb el títol per a la nova finestra que volem construir i dos valors enters (que serviran per establir l'amplada i l'alçada de la finestra). Aquest constructor ha de cridar al constructor de la superclasse passant-li el títol i, després, ha d'establir la mida de la finestra als valors passat per paràmetre. També ha de definir com a operació per defecte sortir de l'aplicació en tancar la finestra (JFrame.EXIT_ON_CLOSE). El constructor també ha de crear un panell contenidor i un BorderLayout.
+
+A continuació crea 5 buttons que es trobin disposats de la següent manera:
+
+Un JButton amb el text "Button 1" situat a la part nord del cotenidor.
+Un JButton amb el text "Button 2" situat a la part sud del cotenidor.
+Un JButton amb el text "Button 3" situat a la part est del cotenidor.
+Un JButton amb el text "Button 4" situat a la part oest del cotenidor.
+Un JButton amb el text "Button 5" situat a la part central del cotenidor.
+Finalment crea una nova classe de nom Main que crei un nou objecte de la classe BorderLayoutTest amb el títol "Border Layout Example". La mida de la finestra ha de ser 400x400 i l'espai entre botons ha de ser de 10 i 10.
+
+code:
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+class BorderLayoutTest extends JFrame {
+    public BorderLayoutTest(String title, int width, int height) {
+        super(title);
+        setSize(width, height);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // Crear un panell contenidor amb BorderLayout
+        JPanel contentPane = new JPanel(new BorderLayout());
+
+        // Afegir botons al panell amb posicions especificades
+        contentPane.add(new JButton("Button 1"), BorderLayout.NORTH);
+        contentPane.add(new JButton("Button 2"), BorderLayout.SOUTH);
+        contentPane.add(new JButton("Button 3"), BorderLayout.EAST);
+        contentPane.add(new JButton("Button 4"), BorderLayout.WEST);
+        contentPane.add(new JButton("Button 5"), BorderLayout.CENTER);
+
+        // Establir l'espai entre components
+        contentPane.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+        // Establir el panell com a contenidor del JFrame
+        setContentPane(contentPane);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        BorderLayoutTest frame = new BorderLayoutTest("Border Layout Example", 400, 400);
+        frame.setVisible(true);
+    }
+}
