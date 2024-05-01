@@ -1,0 +1,83 @@
+Crea una classe Java de nom JPanelExample que heredi de la classe JFrame.
+
+Aquesta classe ha de començar important els paquets necessaris per construir una GUI:
+
+import javax.swing.*;
+
+import java.awt.*;
+
+import java.awt.event.*;
+
+A continuació cal definir un constructor per aquesta classe que rebi com a paràmetre un String amb el títol per a la nova finestra que volem construir i dos valors enters (que serviran per establir l'amplada i l'alçada de la finestra). Aquest constructor ha de cridar al constructor de la superclasse passant-li el títol i, després, ha d'establir la mida de la finestra als valors passat per paràmetre. També ha de definir com a operació per defecte sortir de l'aplicació en tancar la finestra (JFrame.EXIT_ON_CLOSE). 
+
+Tot seguit el constructor ha de fer el següent:
+
+Crear un nou JPanel per emmagatzemar els components que fan referència al nom (el podeu anomenar namePanel). Cal assignar un nou FlowLayout a aquest JPanel.
+A continuació, s'ha de crear una JLabel amb el text "Name: " i un JTextField de longitud 10.
+Cal afegir aquests dos components al JPanel namePanel.
+Crear un nou JPanel per emmagatzemar els components de la botonera (el podeu anomenar buttonPanel). Cal assignar un FlowLayout a aquest JPanel.
+A continuació, s'han de crear dos JButtons amb el text "Accept" i "Cancel".
+Cal afegir aquests dos components al JPanel buttonPanel.
+Finalment cal crear un contenidor i assignar-li un nou BorderLayout.
+Cal afegir el JPanel namePanel al centre del BorderLayout.
+Cal afegir el JPanel buttonPanel al sud del BorderLayout.
+Finalment crea una nova classe de nom Main que crei un nou objecte de la classe JPanelExample amb el títol "Multilayout Window".  Per acabar cal fer visible la finestra.
+
+CODE:
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class JPanelExample extends JFrame {
+
+    public JPanelExample(String title, int width, int height) {
+        super(title); // Crida al constructor de la superclasse
+
+        // Estableix la mida de la finestra
+        setSize(width, height);
+
+        // Defineix l'operació per defecte al tancar la finestra
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // Crea panell per al nom
+        JPanel namePanel = new JPanel();
+        namePanel.setLayout(new FlowLayout());
+
+        // Crea etiqueta i camp de text per al nom
+        JLabel nameLabel = new JLabel("Name: ");
+        JTextField nameField = new JTextField(10);
+
+        // Afegeix etiqueta i camp de text al panell del nom
+        namePanel.add(nameLabel);
+        namePanel.add(nameField);
+
+        // Crea panell per a la botonera
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new FlowLayout());
+
+        // Crea botons "Accept" i "Cancel"
+        JButton acceptButton = new JButton("Accept");
+        JButton cancelButton = new JButton("Cancel");
+
+        // Afegeix botons al panell de la botonera
+        buttonPanel.add(acceptButton);
+        buttonPanel.add(cancelButton);
+
+        // Crea contenidor i estableix el layout BorderLayout
+        Container cp = getContentPane();
+        cp.setLayout(new BorderLayout());
+
+        // Afegeix els panells al contenidor
+        cp.add(namePanel, BorderLayout.CENTER);
+        cp.add(buttonPanel, BorderLayout.SOUTH);
+    }
+
+    public static void main(String[] args) {
+        // Crea un nou objecte de la classe JPanelExample
+        JPanelExample window = new JPanelExample("Multilayout Window", 400, 300);
+
+        // Fa visible la finestra
+        window.setVisible(true);
+    }
+}
