@@ -1,0 +1,79 @@
+Crea una classe Java de nom JRadioButtonExample que heredi de la classe JFrame.
+
+Aquesta classe ha de començar important els paquets necessaris per construir una GUI:
+
+import javax.swing.*;
+
+import java.awt.*;
+
+import java.awt.event.*;
+
+A continuació cal definir un constructor per aquesta classe que rebi com a paràmetre un String amb el títol per a la nova finestra que volem construir i dos valors enters (que serviran per establir l'amplada i l'alçada de la finestra). Aquest constructor ha de cridar al constructor de la superclasse passant-li el títol i, després, ha d'establir la mida de la finestra als valors passat per paràmetre. També ha de definir com a operació per defecte sortir de l'aplicació en tancar la finestra (JFrame.EXIT_ON_CLOSE). 
+
+A continuació, afegirem diversos elements de tipus JRadioButton a la nostra finestra.
+
+Un element JRadioButton s'inicialitza de la següent manera:
+
+JRadioButton rb1 = new JRadioButton("Monday");
+
+rb1.setSelected(true); # use false if you want the radio button to be deselected
+
+I a continuació cal afegir els JRadioButton al JPanel. Ara bé, fent-ho així en podrem seleccionar més d'un (com si fossin un checkBox). Si volem limitar el seu comportament a poder-ne seleccionar només un cal, a més, afegir els JRadioButton en una estructura ButtonGroup:
+
+ButtonGroup bg = new ButtonGroup ();
+
+bg.add(rb1);
+
+Fes els canvis adients al constructor d'aquesta classe perquè la GUI tingui el mateix aspecte que la imatge que s'adjunta a aquest enunciat.
+
+A continuació crea una classe Main que, fent servir la classe JRadioButtonExample, generi la següent GUI en crear el següent objecte:
+
+JRadioButtonExample obj = new JRadioButtonExample ("Radio Button Window", 300, 400);
+
+code:
+
+import javax.swing.*;
+import java.awt.*;
+
+public class JRadioButtonExample extends JFrame {
+    
+    public JRadioButtonExample(String title, int width, int height) {
+        super("Radio Button Window");
+        setSize(width, height);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        JPanel panel = new JPanel();
+        panel.setLayout(new GridLayout(6, 1));
+        
+        JLabel nameLabel = new JLabel("Username:");
+        panel.add(nameLabel);
+        
+        JTextField usernameField = new JTextField();
+        panel.add(usernameField);
+        
+        JRadioButton rb1 = new JRadioButton("Python");
+        panel.add(rb1);
+        
+        JRadioButton rb2 = new JRadioButton("Java");
+        panel.add(rb2);
+        
+        JRadioButton rb3 = new JRadioButton("C++");
+        panel.add(rb3);
+        
+        JRadioButton rb4 = new JRadioButton("C#");
+        panel.add(rb4);
+        
+        ButtonGroup bg = new ButtonGroup();
+        bg.add(rb1);
+        bg.add(rb2);
+        bg.add(rb3);
+        bg.add(rb4);
+        
+        add(panel);
+    }
+    
+    public static void main(String[] args) {
+        JRadioButtonExample obj = new JRadioButtonExample("Radio Button Window", 300, 400);
+        obj.setVisible(true);
+    }
+}
