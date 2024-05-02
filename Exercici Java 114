@@ -1,0 +1,72 @@
+Crea una classe Java de nom JCheckBoxExample que heredi de la classe JFrame.
+
+Aquesta classe ha de començar important els paquets necessaris per construir una GUI:
+
+import javax.swing.*;
+
+import java.awt.*;
+
+import java.awt.event.*;
+
+A continuació cal definir un constructor per aquesta classe que rebi com a paràmetre un String amb el títol per a la nova finestra que volem construir i dos valors enters (que serviran per establir l'amplada i l'alçada de la finestra). Aquest constructor ha de cridar al constructor de la superclasse passant-li el títol i, després, ha d'establir la mida de la finestra als valors passat per paràmetre. També ha de definir com a operació per defecte sortir de l'aplicació en tancar la finestra (JFrame.EXIT_ON_CLOSE). 
+
+A continuació, afegirem diversos elements de tipus JCheckBox a la nostra finestra.
+
+Un element JCheckBox s'inicialitza de la següent manera:
+
+JCheckBox cb1 = new JCheckBox("Monday");
+
+cb1.setSelected(true); # use false if you want the checkbox to be deselected
+
+Fes els canvis adients al constructor d'aquesta classe perquè la GUI tingui el mateix aspecte que la imatge que s'adjunta a aquest enunciat.
+
+A continuació crea una classe Main que, fent servir la classe JCheckBoxExample, generi la següent GUI en crear l'objecte:
+
+JCheckBoxPExample obj = new JCheckBoxPExample ("CheckBox Window", 300, 400);
+
+code:
+
+import javax.swing.*;
+import java.awt.*;
+
+public class JCheckBoxExample extends JFrame {
+    
+    public JCheckBoxExample(String title, int width, int height) {
+        super("Multilayout Window");
+        setSize(width, height);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        JPanel panel = new JPanel();
+        panel.setLayout(new GridLayout(7, 2));
+        
+        JCheckBox cb1 = new JCheckBox("Monday");
+        panel.add(cb1);
+        
+        JCheckBox cb2 = new JCheckBox("Tuesday");
+        panel.add(cb2);
+        
+        JCheckBox cb3 = new JCheckBox("Wednesday");
+        panel.add(cb3);
+      	
+      	JCheckBox cb4 = new JCheckBox("Thursday");
+        panel.add(cb4);
+      
+      	JCheckBox cb5 = new JCheckBox("Friday");
+        panel.add(cb5);
+      
+      	JCheckBox cb6 = new JCheckBox("Saturday");
+      	cb6.setSelected(true);
+        panel.add(cb6);
+      
+       	JCheckBox cb7 = new JCheckBox("Sunday");
+      	cb7.setSelected(true);
+        panel.add(cb7);
+        
+        add(panel);
+    }
+    
+    public static void main(String[] args) {
+        JCheckBoxExample obj = new JCheckBoxExample("CheckBox Window", 300, 400);
+        obj.setVisible(true);
+    }
+}
