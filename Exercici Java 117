@@ -1,0 +1,133 @@
+Un altre element de les GUI que és habitual tenir als nostres programes és un menú. Per exemple, una barra de menú amb opcions tals com obrir un fitxer, tancar-lo, copiar i enganxar contingut, etc.
+
+Per dissenyar un programa que inclogui un menú, caldrà crear una determinada jerarquia d'objectes i anar-los incloient uns dins dels altres.
+
+D'entrada, cal crear un objecte JMenuBar. Aquesta barra de menús ha d'incorporar-se al JFrame (que en el nostre cas, en estar usant una subclasse de JFrame, podem obtenir mitjançant l'identificador this). Després cal crear cadascun dels menús individuals que formaran el menú usant objectes JMenu i aquests s'han d'assignar a la barra de menús. Finalment cal crear els elements que conformen cada menú a través d'objectes JMenuItem i vincular-los al menú al qual pertanyen.
+
+També és freqüent fer servir, per exemple, separadors per organitzar millor els menús.
+
+Per tal de veure el funcionament de tot això, copieu el següent exemple i executeu-lo. Mireu d'identificar tots els aspectes que s'han comentat anteriorment. A continuació, modifiqueu el codi per tal de tenir 3 nous elements al menú "Edit" que s'identifiquin com "Cut", "Copy" i "Paste", tal i com es veu a la imatge que s'adjunta a aquest enunciat:
+
+ 
+
+import javax.swing.*;
+
+import java.awt.*;
+
+class JMenuExample extends JFrame {
+
+    JMenuExample (String title, int width, int height) {
+
+       super ( title );
+
+       setSize ( width, height );
+
+       setDefaultCloseOperation ( JFrame.EXIT_ON_CLOSE );
+
+       JMenuBar menubar = new JMenuBar ();
+
+       JMenu menu1 = new JMenu ( "File" );
+
+       JMenu menu2 = new JMenu ( "Edit" );
+
+       JMenu menu3 = new JMenu ( "About" );
+
+       menubar.add ( menu1 );
+
+       menubar.add ( menu2 );
+
+       menubar.add ( menu3 );
+
+       JMenuItem jmi1 = new JMenuItem ( "Open" );
+
+       JMenuItem jmi2 = new JMenuItem ( "Close" );
+
+       menu1.add ( jmi1 );
+
+       menu1.add ( jmi2 );
+
+       menu1.addSeparator ();
+
+       JMenuItem jmi3 = new JMenuItem ( "Save as ..." );
+
+       JMenuItem jmi4 = new JMenuItem ( "Save" );
+
+       menu1.add ( jmi3 );
+
+       menu1.add ( jmi4 );
+
+       // Add the JMenuBar to the JFrame
+
+       this.setJMenuBar(menubar);
+
+    }
+}
+
+public class Test {
+
+    public static void main ( String args[] ) {
+
+       JMenuExample obj = new JMenuExample ("Menu Window", 200, 200);
+
+       obj.setVisible ( true );
+
+    }
+
+}
+
+code:
+
+import javax.swing.*;
+import java.awt.*;
+
+class JMenuExample extends JFrame {
+
+    JMenuExample(String title, int width, int height) {
+        super(title);
+        setSize(width, height);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        JMenuBar menubar = new JMenuBar();
+
+        JMenu menu1 = new JMenu("File");
+        JMenu menu2 = new JMenu("Edit");
+        JMenu menu3 = new JMenu("About");
+
+        menubar.add(menu1);
+        menubar.add(menu2);
+        menubar.add(menu3);
+
+        JMenuItem jmi1 = new JMenuItem("Open");
+        JMenuItem jmi2 = new JMenuItem("Close");
+
+        menu1.add(jmi1);
+        menu1.add(jmi2);
+        menu1.addSeparator();
+
+        JMenuItem jmi3 = new JMenuItem("Save as ...");
+        JMenuItem jmi4 = new JMenuItem("Save");
+
+        menu1.add(jmi3);
+        menu1.add(jmi4);
+
+        // Add "Cut", "Copy" and "Paste" to the "Edit" menu
+        JMenuItem cutItem = new JMenuItem("Cut");
+        JMenuItem copyItem = new JMenuItem("Copy");
+        JMenuItem pasteItem = new JMenuItem("Paste");
+
+        menu2.add(cutItem);
+        menu2.add(copyItem);
+        menu2.add(pasteItem);
+
+        // Add the JMenuBar to the JFrame
+        setJMenuBar(menubar);
+    }
+}
+
+public class Test {
+
+    public static void main(String args[]) {
+        JMenuExample obj = new JMenuExample("Menu Window", 200, 200);
+        obj.setVisible(true);
+    }
+}
