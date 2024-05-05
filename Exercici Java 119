@@ -1,0 +1,56 @@
+Crea una classe Java de nom JSpinnerExample que heredi de la classe JFrame.
+
+Aquesta classe ha de començar important els paquets necessaris per construir una GUI:
+
+import javax.swing.*;
+
+import java.awt.*;
+
+import java.awt.event.*;
+
+A continuació cal definir un constructor per aquesta classe que rebi com a paràmetre un String amb el títol per a la nova finestra que volem construir i dos valors enters (que serviran per establir l'amplada i l'alçada de la finestra). Aquest constructor ha de cridar al constructor de la superclasse passant-li el títol i, després, ha d'establir la mida de la finestra als valors passat per paràmetre. També ha de definir com a operació per defecte sortir de l'aplicació en tancar la finestra (JFrame.EXIT_ON_CLOSE). 
+
+Seguidament, afegirem un element de tipus JSpinner. Per fer-ho, començarem definint un array de valors que estaran disponibles per escollir mitjançant aquest component. Després crearem un model de llista per al JSpinner i finalment crearem un objecte JSpinner amb aquest model:
+
+String[] s = {"Python", "C++", "Java", "C#"};
+
+SpinnerListModel listModel = new SpinnerListModel (s);
+
+JSpinner spinner = new JSpinner ( listModel);
+
+A continuació crea una classe Main que, fent servir la classe JSpinnerExample, generi la següent GUI en crear el següent objecte:
+
+JSpinnerExample obj = new JSpinnerExample ("Spinner Window", 200, 50);
+
+code:
+
+import javax.swing.*;
+import java.awt.*;
+
+public class JSpinnerExample extends JFrame {
+    
+    public JSpinnerExample(String title, int width, int height) {
+        super(title);
+        setSize(width, height);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        // Definir els valors disponibles per a l'spinner
+        String[] s = {"Python", "C++", "Java", "C#"};
+        
+        // Crear el model de llista per a l'spinner
+        SpinnerListModel listModel = new SpinnerListModel(s);
+        
+        // Crear l'spinner amb el model
+        JSpinner spinner = new JSpinner(listModel);
+        
+        // Afegir l'spinner al contenidor principal
+        getContentPane().add(spinner, BorderLayout.CENTER);
+    }
+    
+    public static void main(String[] args) {
+        // Crear un objecte JSpinnerExample
+        JSpinnerExample obj = new JSpinnerExample("Spinner Window", 200, 50);
+        // Fer visible la finestra
+        obj.setVisible(true);
+    }
+}
