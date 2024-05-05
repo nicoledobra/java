@@ -1,0 +1,77 @@
+Anem a dur a terme un exemple junts!
+
+Anem a crear una GUI simple. Aquesta GUI contindrà inicialment un JButton amb el text "Press me!" i una JLabel sense cap text.
+
+Per fer-ho crearem una nova classe Java de nom Example que heredarà de la classe JFrame. Aquesta classe tindrà dos atributs privats que seran els components de la GUI (en aquest cas un JButton i un JLabel). És interessant que siguin atributs de la classe perquè així s'hi podrà accedir des qualsevol mètodo o apartat de la pròpia classe.
+
+A continuació crearem un constructor sense paràmetres que faci servir el constructor de la superclasse per posar com a títol de la finestra "First Example" i després redimensionarem la finestra a una amplada de 200 i una alçada de 100. L'operació per defecte en prémer la creu serà tancar la finestra.
+
+Tot seguit crearem un contenidor i li assignarem un layout de tipus FlowLayout. Iniciarem el JButton i li assignarem un ActionListener. A aquest li passarem com a paràmetre un objecte d'una nova classe privada que crearem a dins de la pròpia classe Example: aquesta classe es dirà ButtonPressedEvent. També iniciarem l'etiqueta (sense text) i afegirem els dos components a dins del contenidor.
+
+Continuarem creant la nova classe privada de nom ButtonPressedEvent que implementarà la interfície ActionListener. Aquesta classe tindrà a dins la definició del mètode actionPerformed. El que farà aquest mètode simplement serà canviar el text de l'etiqueta JLabel lab (és a dir, l'atribut de la classe) pel nou text "Button pressed".
+
+Ja fora de la classe privada, crearem el mètode main que s'encarregarà de crear un objecte de la classe Example i el farà visible.
+
+Copia el següent codi i compara'l amb tot el que aquí s'ha explicat. Finalment, comprova que el funcionament és l'esperat en executar-lo:
+
+import javax.swing.*;
+
+import java.awt.*;
+
+import java.awt.event.ActionListener;
+
+import java.awt.event.ActionEvent;
+
+
+public class Example extends JFrame {
+
+    private JButton bt;
+
+    private JLabel lab;
+
+    public Example () {
+
+       super ( "Button" );
+
+       setSize ( 200,100 );
+
+       setDefaultCloseOperation ( JFrame.EXIT_ON_CLOSE );
+
+       Container cp = getContentPane ();
+
+       cp.setLayout ( new FlowLayout () );
+
+       bt = new JButton ( "Press me!" );
+
+       bt.addActionListener ( new ButtonPressedEvent () );
+
+       lab = new JLabel ( "" );
+
+       cp.add ( bt );
+
+       cp.add ( lab );
+
+    }
+
+    public static void main ( String args[] ) {
+
+       Example obj = new Example ();
+
+       obj.setVisible ( true );
+
+    }
+
+    private class ButtonPressedEvent implements ActionListener {
+
+       public void actionPerformed ( ActionEvent e ) {
+
+          lab.setText("Button pressed");
+
+       }
+
+    }
+
+}
+
+code:
+
