@@ -1,0 +1,56 @@
+Crea una classe Java de nom JPasswordExample que heredi de la classe JFrame.
+
+Aquesta classe ha de començar important els paquets necessaris per construir una GUI:
+
+import javax.swing.*;
+
+import java.awt.*;
+
+import java.awt.event.*;
+
+A continuació cal definir un constructor per aquesta classe que rebi com a paràmetre un String amb el títol per a la nova finestra que volem construir i dos valors enters (que serviran per establir l'amplada i l'alçada de la finestra). Aquest constructor ha de cridar al constructor de la superclasse passant-li el títol i, després, ha d'establir la mida de la finestra als valors passat per paràmetre. També ha de definir com a operació per defecte sortir de l'aplicació en tancar la finestra (JFrame.EXIT_ON_CLOSE). 
+
+Seguidament, afegirem un element de tipus JPasswordField. Per fer-ho, tan sols caldrà establir la longitud per aquest camp.
+
+JPasswordField pf = new JPasswordField ( 10 );
+
+Normalment, els camps de tipus paraula de pas van acompanyats per una etiqueta JLabel.
+
+A continuació crea una classe Main que, fent servir la classe JPasswordExample, generi la següent GUI en crear el següent objecte:
+
+JPasswordExample obj = new JPasswordExample ("Password Window", 200, 100);
+
+code:
+
+import javax.swing.*;
+import java.awt.*;
+
+public class JPasswordExample extends JFrame {
+    
+    public JPasswordExample(String title, int width, int height) {
+        super(title);
+        setSize(width, height);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        // Crear un camp de paraula de pas
+        JPasswordField pf = new JPasswordField(10);
+        
+        // Crear una etiqueta per al camp de paraula de pas
+        JLabel label = new JLabel("Password:");
+        
+        // Crear un contenidor per al camp de paraula de pas i l'etiqueta
+        JPanel panel = new JPanel(new FlowLayout());
+        panel.add(label);
+        panel.add(pf);
+        
+        // Afegir el contenidor al frame
+        getContentPane().add(panel, BorderLayout.CENTER);
+    }
+    
+    public static void main(String[] args) {
+        // Crear un objecte JPasswordExample
+        JPasswordExample obj = new JPasswordExample("Password Window", 200, 100);
+        // Fer visible la finestra
+        obj.setVisible(true);
+    }
+}
