@@ -1,0 +1,121 @@
+El present exercici consisteix en construir una GUI que ens permeti sumar i restar nombres.
+
+Aquesta GUI contindrà dos camps de tipus JTextField que permetran introduir els valors que volem operar. També ha d'incloure dos JButtons per indicar l'operació que es vol dur a terme i, finalment, un JLabel que inicialment no contindrà cap valor.
+
+Per construir aquesta GUI començarem per importar els següents paquets:
+
+import javax.swing.*;
+
+import java.awt.*;
+
+import java.awt.event.ActionListener;
+
+import java.awt.event.ActionEvent;
+
+A continuació crearem una classe Java de nom Example3 que hereti de la classe JFrame. Aquesta classe tindrà els següents atributs:
+
+sum -> un atribut privat de tipus JButton
+sub -> un atribut privat de tipus JButton
+txf1 -> un atribut privat de tipus JTextField
+txf2 -> un atribut privat de tipus JTextField
+lab -> un atribut privat de tipus JLabel
+El constructor de la classe no rebrà paràmetres i començarà cridant al constructor de la superclasse passant-li com a títol per la finestra el text "Third Example" i usant com a amplada 350 i com a alçada 125.
+
+A continuació el constructor crearà un nou contenidor i definirà per aquest un GridLayout de 3 files i 1 columna per a disposar els components. Seguidament, caldrà crear dos JPanel per contenir els camps de text i els butons. El primer JPanel es dirà textPane i el segon buttonPane. Seguirem iniciant els atributs txf1 i txf2 els dos amb una longitud de 10 caràcters i afegint-los al textPane. Els dos botons caldrà iniciar-los amb els texts "Sum" i "Substract" i afegir-los al buttonPane. A més, els buttons hauran de tenir cadascun d'ells un actionListener afegit: en el cas del botó sum li afegirem un nou objecte de la classe SumButtonPressedEvent i en el cas del botó sub li afegirem un objecte de la classe SubButtonPressedEvent. Finalment, per completar el constructor, caldrà iniciar l'etiqueta JLabel amb el text "" i afegir, per odre, el textPane, el buttonPane i l'etiqueta al contenidor.
+
+Tot seguit, encara a dins de la classe Example3, definirem una nova classe privada de nom SumButtonPressedEvent que implementi la interfície ActionListener. El contingut d'aquesta classe ha de ser el següent:
+
+public void actionPerformed ( ActionEvent e ) {
+
+    int a, b;
+
+    a = Integer.parseInt(txf1.getText());
+
+    b = Integer.parseInt(txf2.getText());
+
+    lab.setText("The sum of " + txf1.getText() + " and " + txf2.getText() + " is " + String.valueOf(a+b));
+
+}
+
+Si observem aquest codi hi podem veure uns quants elements que resulten nous:
+
+Integer.parseInt () -> aquest mètode permet convertir una cadena a un enter.
+getText() -> aquest mètode, aplicat a un JTextField ens permet recuperar el contingut d'un camp de text.
+String.valueOf () -> aquest mètode permet convertir un valor a una cadena
+Per tant, el que s'està realitzant en aquest mètode és el següent: quan alguí dugui a terme una acció amb el botó que tingui un event d'aquesta classe, recuperarem els valors dels camps de text i actualitzarem el contingut de l'etiqueta amb un missatge on es mostrarà la suma dels dos valors.
+
+També serà necessari crear una altra classe privada a dins d'Example3 anomenada SubButtonPressedEvent que implementarà també la interfície ActionListener. Deixem a les vostres mans la implementació d'aquesta classe.
+
+Finalment, cal crear el mètode main per a la classe Example3 que s'encarregui de crear un nou objecte de la GUI i fer-lo visible.
+
+El resultat del teu programa hauria de ser la següent GUI:
+
+EN PRÉMER EL BOTÓ SUM
+
+code:
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class Example3 extends JFrame {
+
+    private JButton sum;
+    private JButton sub;
+    private JTextField txf1;
+    private JTextField txf2;
+    private JLabel lab;
+
+    public Example3() {
+        super("Third Example");
+        setSize(350, 125);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        Container cp = getContentPane();
+        cp.setLayout(new GridLayout(3, 1));
+
+        JPanel textPane = new JPanel();
+        txf1 = new JTextField(10);
+        txf2 = new JTextField(10);
+        textPane.add(txf1);
+        textPane.add(txf2);
+
+        JPanel buttonPane = new JPanel();
+        sum = new JButton("Sum");
+        sub = new JButton("Substract");
+        sum.addActionListener(new SumButtonPressedEvent());
+        sub.addActionListener(new SubButtonPressedEvent());
+        buttonPane.add(sum);
+        buttonPane.add(sub);
+
+        lab = new JLabel("");
+        
+        cp.add(textPane);
+        cp.add(buttonPane);
+        cp.add(lab);
+    }
+
+    private class SumButtonPressedEvent implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            int a, b;
+            a = Integer.parseInt(txf1.getText());
+            b = Integer.parseInt(txf2.getText());
+            lab.setText("The sum of " + txf1.getText() + " and " + txf2.getText() + " is " + String.valueOf(a + b));
+        }
+    }
+
+    private class SubButtonPressedEvent implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            int a, b;
+            a = Integer.parseInt(txf1.getText());
+            b = Integer.parseInt(txf2.getText());
+            lab.setText("The subtraction of " + txf1.getText() + " and " + txf2.getText() + " is " + String.valueOf(a - b));
+        }
+    }
+
+    public static void main(String args[]) {
+        Example3 obj = new Example3();
+        obj.setVisible(true);
+    }
+}
