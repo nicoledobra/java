@@ -1,0 +1,49 @@
+Anem a construir un programa molt semblant a l'anterior: es tracta d'una GUI amb un sol botó i una etiqueta que comença sense text.
+
+Quan algú premi el botó, si l'etiqueta no té text, canviarem el text d'aquesta perquè mostri "Button Pressed". Si tornem a prémer el botó, el text ha de desaparèixer. Si el tornem a prémer, el text ha de tornar a aparèixer, i així anar fent.
+
+Per soluncionar aquest exercici et pot resultar útil tenir un nou atribut privat que serveixi per saber si el botó s'ha polsat o no (és a dir l'estat del botó). Cada cop que es premi el botó, cal comprovar en quin estat està: si està polsat, traiem el text de l'etiqueta i canviem el valor de l'atribut estat; si no està pulsat, posem el text a l'etiqueta i canviem el valor de l'atribut estat.
+
+code:
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class Example2 extends JFrame {
+
+    private JButton bt;
+    private JLabel lab;
+    private boolean buttonState = false; // Nou atribut per controlar l'estat del botó
+
+    public Example2() {
+        super("Button");
+        setSize(200, 100);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Container cp = getContentPane();
+        cp.setLayout(new FlowLayout());
+        bt = new JButton("Press me!");
+        bt.addActionListener(new ButtonPressedEvent());
+        lab = new JLabel("");
+        cp.add(bt);
+        cp.add(lab);
+    }
+
+    private class ButtonPressedEvent implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            if (buttonState) { // Si el botó ja està polsat
+                lab.setText(""); // Eliminem el text de l'etiqueta
+                buttonState = false; // Actualitzem l'estat del botó
+            } else { // Si el botó no està polsat
+                lab.setText("Button pressed"); // Afegim el text a l'etiqueta
+                buttonState = true; // Actualitzem l'estat del botó
+            }
+        }
+    }
+
+    public static void main(String args[]) {
+        Example2 obj = new Example2();
+        obj.setVisible(true);
+    }
+}
