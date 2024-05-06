@@ -1,0 +1,75 @@
+A continuació posarem en pràctica tot el que hem parlat sobre diàlegs.
+
+El present exercici consisteix en construir una GUI molt simple amb un botó en què, en préme'l, mostri per pantalla un diàleg.
+
+Aquesta GUI contindrà un component de tipus JButton que posarà en marxa la funcionalitat de la GUI.
+
+Per construir aquesta GUI començarem per importar els següents paquets:
+
+import javax.swing.*;
+
+import java.awt.*;
+
+import java.awt.event.ActionListener;
+
+import java.awt.event.ActionEvent;
+
+A continuació crearem una classe Java de nom dialog1 que hereti de la classe JFrame. En aquesta ocasió, la classe no tindrà atributs.
+
+El constructor de la classe no rebrà paràmetres i començarà cridant al constructor de la superclasse passant-li com a títol per la finestra el text "Dialog1 Example" i usant com a amplada 200 i com a alçada 75.
+
+A continuació el constructor crearà un nou contenidor i definirà per aquest un FlowLayout. Seguidament caldrà crear un JButton amb el text "Press me!" que adjuntarem al contenidor. Relacionarem el JButton a un nou ActionListener de nom showDialog que definirem més endavant. 
+
+Tot seguit, encara a dins de la classe dialog1, definirem una nova classe privada de nom showDialog que implementi la interfície ActionListener. El contingut d'aquesta classe ha de ser el següent:
+
+public void actionPerformed ( ActionEvent e ) {
+
+    JButton b = (JButton) e.getSource ();
+
+    JOptionPane.showMessageDialog ( b.getParent (), "My first dialog!" );
+
+}
+
+Si observem aquest codi hi podem veure uns quants elements que resulten nous:
+
+getParent () -> aquest mètode d'un component swing permet recuperar l'objecte pare d'un component. En el nostre cas el fem servir perquè a l'hora d'utilitzar un diàleg cal passar com a primer paràmetre el component pare.
+Finalment, cal crear el mètode main per a la classe dialog1 que s'encarregui de crear un nou objecte de la GUI i fer-lo visible.
+
+El resultat del teu programa hauria de ser la següent GUI:
+
+EN COMENÇAR EL PROGRAMA
+
+code:
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class Dialog1 extends JFrame {
+
+    public Dialog1() {
+        super("Dialog1 Example");
+        setSize(200, 75);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        Container cp = getContentPane();
+        cp.setLayout(new FlowLayout());
+
+        JButton button = new JButton("Press me!");
+        button.addActionListener(new showDialog());
+        cp.add(button);
+    }
+
+    private class showDialog implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            JButton button = (JButton) e.getSource();
+            JOptionPane.showMessageDialog(button.getParent(), "My first dialog!");
+        }
+    }
+
+    public static void main(String[] args) {
+        Dialog1 dialog = new Dialog1();
+        dialog.setVisible(true);
+    }
+}
