@@ -1,0 +1,111 @@
+El present exercici consisteix en construir una GUI que ens permeti escollir la nostra mascota preferida d'entre diverses opcions.
+
+Aquesta GUI contindrà un component de tipus JComboBox on es mostraran els noms d'uns quants animals.També inclourà un parell de components JLabel per mostrar missatges.
+
+Per construir aquesta GUI començarem per importar els següents paquets:
+
+import javax.swing.*;
+
+import java.awt.*;
+
+import java.awt.event.ActionListener;
+
+import java.awt.event.ActionEvent;
+
+A continuació crearem una classe Java de nom Example4 que hereti de la classe JFrame. Aquesta classe tindrà els següents atributs:
+
+petList -> un atribut privat de tipus JComboBox
+pets -> un atribut privat i static (una constant) de tipus array d'Strings amb el següent contingut: {"Bird", "Cat", "Dog", "Rabbit", "Pig"}
+petPreference -> un atribut privat de tipus JLabel
+El constructor de la classe no rebrà paràmetres i començarà cridant al constructor de la superclasse passant-li com a títol per la finestra el text "Fourth Example" i usant com a amplada 350 i com a alçada 125.
+
+A continuació el constructor crearà un nou contenidor i definirà per aquest un GridLayout d'1 fila i 2 columnes per disposar els components. Seguidament caldrà crear un JPanel amb un nou GridLayout de 2 files i 1 columna assignat. En aquest JPanel s'hi hauran d'afegir un JLabel amb el text "Select your favorite pet: " i el JComboBox iniciat amb el contingut de l'array d'String de nom pets. Relacionarem el JComboBox a un nou ActionListener de nom ChosenAnimal que definirem més endavant. 
+
+Per aliniar els textos de les etiquetes, podem fer servir el següent mètode de les JLabel:
+
+setHorizontalAlignment ( int align )
+
+On align pot ser:
+
+JLabel.CENTER
+JLabel.RIGHT
+JLabel.LEFT
+Així, per exemple, si tenim una JLabel de nom lab i ens interessa centrar-la, podríem escriure:
+
+lab.setHorizontalAlignment ( JLabel.CENTER );
+
+Tot seguit, encara a dins de la classe Example4, definirem una nova classe privada de nom ChosenAnimal que implementi la interfície ActionListener. El contingut d'aquesta classe ha de ser el següent:
+
+ public void actionPerformed ( ActionEvent e ) {
+
+    JComboBox cb = (JComboBox) e.getSource();
+
+    String petname = (String) cb.getSelectedItem();
+
+    petPreference.setText ( "Your favorite per is " + petname );
+
+}
+
+Si observem aquest codi hi podem veure uns quants elements que resulten nous:
+
+e.getSource () -> aquest mètode dels ActionEvent retorna l'objecte sobre el qual s'ha produït l'esdeveniment. Com que aquest mètode retorna un objecte (diguem-ne sense forma, doncs un ActionListener es pot relacionar a molts objectes diferents i no sabem ben bé quin ha generat l'esdeveniment) cal fer un casting per donar-li forma de JComBox. És per aquest motiu que al davant hi posem (JComboBox).
+getSelectedItem () -> aquest mètode dels JComboBox retorna l'element seleccionat d'entre els disponibles a un JComboBox. De manera similar a la instrucció anterior, ha calgut fer un casting a String.
+Per tant, el que s'està realitzant en aquest mètode és el següent: quan algú dugui a terme una acció amb el combobox que tingui un event d'aquesta classe, recuperarem l'objecte sobre el que s'ha produït l'acció i el text seleccionat. A continuació canviarem el text de l'etiqueta perquè s'adequi a la tria realitzada per l'usuari.
+
+Finalment, cal crear el mètode main per a la classe Example4 que s'encarregui de crear un nou objecte de la GUI i fer-lo visible.
+
+El resultat del teu programa hauria de ser la següent GUI:
+
+EN COMENÇAR EL PROGRAMA
+
+CODE:
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class Example4 extends JFrame {
+
+    private JComboBox<String> petList;
+    private static final String[] pets = {"Bird", "Cat", "Dog", "Rabbit", "Pig"};
+    private JLabel petPreference;
+
+    public Example4() {
+        super("Fourth Example");
+        setSize(350, 125);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        Container cp = getContentPane();
+        cp.setLayout(new GridLayout(1, 2));
+
+        JPanel panel = new JPanel(new GridLayout(2, 1));
+
+        JLabel label = new JLabel("Select your favorite pet: ");
+        label.setHorizontalAlignment(JLabel.RIGHT);
+        panel.add(label);
+
+        petList = new JComboBox<>(pets);
+        petList.addActionListener(new ChosenAnimal());
+        panel.add(petList);
+
+        cp.add(panel);
+
+        petPreference = new JLabel("");
+        petPreference.setHorizontalAlignment(JLabel.CENTER);
+        cp.add(petPreference);
+    }
+
+    private class ChosenAnimal implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            JComboBox<?> cb = (JComboBox<?>) e.getSource();
+            String petname = (String) cb.getSelectedItem();
+            petPreference.setText("Your favorite pet is " + petname);
+        }
+    }
+
+    public static void main(String args[]) {
+        Example4 obj = new Example4();
+        obj.setVisible(true);
+    }
+}
