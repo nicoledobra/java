@@ -1,0 +1,81 @@
+Crea una classe Java de nom JSliderExample que heredi de la classe JFrame.
+
+Aquesta classe ha de començar important els paquets necessaris per construir una GUI:
+
+import javax.swing.*;
+
+import java.awt.*;
+
+import java.awt.event.*;
+
+A continuació cal definir un constructor per aquesta classe que rebi com a paràmetre un String amb el títol per a la nova finestra que volem construir i dos valors enters (que serviran per establir l'amplada i l'alçada de la finestra). Aquest constructor ha de cridar al constructor de la superclasse passant-li el títol i, després, ha d'establir la mida de la finestra als valors passat per paràmetre. També ha de definir com a operació per defecte sortir de l'aplicació en tancar la finestra (JFrame.EXIT_ON_CLOSE). 
+
+Seguidament, afegirem un element de tipus JSlider. Per fer-ho, escriurem la següent sentència:
+
+JSlider sl1 = new JSlider(JSlider.HORIZONTAL, 0, 100, 50);
+
+Això iniciarà el lliscador amb les següents característiques:
+
+Orientació horitzontal (també podem posar-ho a vertical amb la constant JSlider.VERTICAL).
+Valor mínim -> 0 serà el valor mínim del lliscador. Ha de ser un valor enter.
+Valor màxim -> 100 serà el valor màxim del lliscador. Ha de ser un valor enter.
+Valor inicial -> 50 serà el valor inicial del lliscador. Ha de ser un valor enter.
+Si volem etiquetar alguns "punts importants" del lliscador ho hem de fer creant un hash (un diccionari). Caldrà doncs, importar la següent classe al nostre codi:
+
+import java.util.Hashtable;
+
+En aquest hash indicarem valors i l'etiqueta que volem que aparegui al costat del lliscador. Per exemple, podríem definir etiquetes per al JSlider sl1 afegint les següents instruccions:
+
+Hashtable labelTable = new Hashtable ();
+
+labelTable.put ( new Integer ( 0 ), new JLabel ( "Slow" ) );
+
+labelTable.put ( new Integer ( 50 ), new JLabel ( "Medium" ) );
+
+labelTable.put ( new Integer ( 100 ), new JLabel ( "Fast" ) );
+
+sl1.setLabelTable ( labelTable );
+
+sl1.setPaintLabels ( true );
+
+A continuació crea una classe Main que, fent servir la classe JSliderExample, generi la següent GUI en crear el següent objecte:
+
+JSliderExample obj = new JSliderExample ("Slider Box Window", 200, 100);
+
+code:
+
+import javax.swing.*;
+import java.awt.*;
+import java.util.Hashtable;
+
+public class JSliderExample extends JFrame {
+    
+    public JSliderExample(String title, int width, int height) {
+        super(title);
+        setSize(width, height);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        // Crear el JSlider
+        JSlider sl1 = new JSlider(JSlider.HORIZONTAL, 0, 100, 50);
+        
+        // Crear les etiquetes per al JSlider
+        Hashtable<Integer, JLabel> labelTable = new Hashtable<>();
+        labelTable.put(0, new JLabel("Slow"));
+        labelTable.put(50, new JLabel("Medium"));
+        labelTable.put(100, new JLabel("Fast"));
+        
+        // Assignar les etiquetes al JSlider
+        sl1.setLabelTable(labelTable);
+        sl1.setPaintLabels(true);
+        
+        // Afegir el JSlider al contenidor principal
+        getContentPane().add(sl1, BorderLayout.CENTER);
+    }
+    
+    public static void main(String[] args) {
+        // Crear un objecte JSliderExample
+        JSliderExample obj = new JSliderExample("Slider Box Window", 200, 100);
+        // Fer visible la finestra
+        obj.setVisible(true);
+    }
+}
