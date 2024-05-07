@@ -1,0 +1,110 @@
+El present exercici consisteix en construir una GUI que demani el nom a l'usuari i faci servir aquest nom per mostrar una salutació. Si l'usuari no introdueix la dada demanada, la GUI reaccionarà adequadament.
+
+Aquesta GUI contindrà un component de tipus JLabel per al missatge de comunicació amb l'usuari i un JButton que serà l'encarregat de llançar el diàleg de captura de dades.
+
+Per construir aquesta GUI començarem per importar els següents paquets:
+
+import javax.swing.*;
+
+import java.awt.*;
+
+import java.awt.event.ActionListener;
+
+import java.awt.event.ActionEvent;
+
+A continuació crearem una classe Java de nom dialog2 que hereti de la classe JFrame. En aquesta ocasió, la classe tindrà els següents atributs:
+
+question -> un atribut privat de tipus JLabel.
+bt -> un atribut privat de tipus JButton.
+El constructor de la classe no rebrà paràmetres i començarà cridant al constructor de la superclasse passant-li com a títol per la finestra el text "Dialog2 Example" i usant com a amplada 350 i com a alçada 75.
+
+A continuació el constructor crearà un nou contenidor i definirà per aquest un FlowLayout. Seguidament caldrà crear inicialitzar l'atribut JLabel amb el text "Whats your name?" i el JButton amb el text "Answer". Caldrà afegir un ActionListener de tipus showDialog al botó. Finalment afegirem l'etiqueta i el botó al contenidor.
+
+Tot seguit, encara a dins de la classe dialog2, definirem una nova classe privada de nom showDialog que implementi la interfície ActionListener. El contingut d'aquesta classe ha de ser el següent:
+
+public void actionPerformed ( ActionEvent e ) {
+
+    JButton b = (JButton) e.getSource ();
+
+    String name = JOptionPane.showInputDialog ( b.getParent (), "Enter your name:", "");
+
+    if ( name.equals("") ) {
+
+       question.setText ( "Are you sure you have written your name correctly?" );
+
+    } else {
+
+       question.setText ( "Nice to meet you " + name + "!" );
+
+       bt.setVisible ( false );
+
+    }
+
+}
+
+Si observem aquest codi hi podem veure uns quants elements que resulten nous:
+
+setVisible () -> aquest mètode d'un component swing permet amagar el component.
+El que està fent aquest ActionListener és que, en el moment en què algú premi el botó, es mostrarà un diàleg de captura de dades. Si l'usuari no introdueix cap dada (és a dir, si el text resultant de la captura és la cadena buida ""), canviarem el missatge de l'atribut etiqueta i mantindrem visible el botó perquè l'usuari pugui continuar introduïnt el nom, si vol. En canvi, si el text capturat no és buit, canviarem l'etiqueta a una salutació i amagarem el botó.
+
+Finalment, cal crear el mètode main per a la classe dialog2 que s'encarregui de crear un nou objecte de la GUI i fer-lo visible.
+
+El resultat del teu programa hauria de ser la següent GUI:
+
+EN COMENÇAR EL PROGRAMA
+
+code:
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class Dialog2 extends JFrame {
+    private JLabel question;
+    private JButton bt;
+
+    public Dialog2() {
+        super("Dialog2 Example");
+        setSize(350, 75);
+        
+        Container c = getContentPane();
+        c.setLayout(new FlowLayout());
+        
+        question = new JLabel("What's your name?");
+        bt = new JButton("Answer");
+        bt.addActionListener(new showDialog());
+        
+        c.add(question);
+        c.add(bt);
+    }
+    
+    private class showDialog implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            JButton b = (JButton) e.getSource();
+            
+            JPanel panel = new JPanel();
+            JTextField textField = new JTextField(10);
+            panel.add(new JLabel("Enter your name:"));
+            panel.add(textField);
+            
+            int result = JOptionPane.showOptionDialog(b.getParent(), panel, "Enter your name:", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null, new String[]{"Cancel", "Accept"}, "Accept");
+            if (result == JOptionPane.OK_OPTION) {
+                String name = textField.getText();
+                if (name.trim().isEmpty()) {
+                    JOptionPane.showMessageDialog(b.getParent(), "Are you sure you have written your name correctly?", "Answer", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    question.setText("Nice to meet you " + name + "!");
+                    bt.setVisible(false);
+                }
+            }
+        }
+    }
+    
+    public static void main(String[] args) {
+        Dialog2 dialog = new Dialog2();
+        dialog.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        dialog.setVisible(true);
+    }
+}
+
