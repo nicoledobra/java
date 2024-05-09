@@ -1,0 +1,85 @@
+El present exercici consisteix en construir una GUI simple amb un botó que, en préme'l ens demani confirmació per abandonar el programa.
+
+Aquesta GUI contindrà un component de tipus JButton i un diàleg per demanar la confirmació.
+
+Per construir aquesta GUI començarem per importar els següents paquets:
+
+import javax.swing.*;
+
+import java.awt.*;
+
+import java.awt.event.ActionListener;
+
+import java.awt.event.ActionEvent;
+
+A continuació crearem una classe Java de nom dialog3 que hereti de la classe JFrame. En aquesta ocasió, la classe no tindrà atributs.
+
+El constructor de la classe no rebrà paràmetres i començarà cridant al constructor de la superclasse passant-li com a títol per la finestra el text "Dialog3 Example" i usant com a amplada 350 i com a alçada 75.
+
+A continuació el constructor crearà un nou contenidor i definirà per aquest un FlowLayout. Seguidament caldrà crear un nou JButton amb el text "Close Window". Aquest botó haurà de tenir associat un ActionListener de la classe showDialog que crearem més endavant. Finalment caldrà afegir el botó al contenidor.
+
+Tot seguit, encara a dins de la classe dialog3, definirem una nova classe privada de nom showDialog que implementi la interfície ActionListener. El contingut d'aquesta classe ha de ser el següent:
+
+public void actionPerformed ( ActionEvent e ) {
+
+    JButton b = (JButton) e.getSource ();
+
+    int a = JOptionPane.showConfirmDialog ( b.getParent () , "Are you sure you want to quit?", "Exit confirmation", JOptionPane.YES_NO_OPTION );
+
+    if ( a == JOptionPane.YES_OPTION ){
+
+       System.exit (0);
+
+    }
+
+}
+
+Si observem aquest codi hi podem veure uns quants elements que resulten nous:
+
+System.exit (0) -> aquesta instrucció provoca que s'acabi el programa.
+El que està fent aquest ActionListener és que, en el moment en què algú premi el botó, es mostrarà un diàleg de confirmació. En aquest, de manera una mica diferent a l'exemple vist a la teoria anterior, canviarà el títol de la finestra de confirmació i el convertirà en un diàleg només de SI / NO. Capturem en una variable l'elecció de l'usuari i, fent servir un condicional, esbrinem si l'usuari ha confirmat que vol sortir de l'aplicació. Si és així, tanquem el programa.
+
+Finalment, cal crear el mètode main per a la classe dialog3 que s'encarregui de crear un nou objecte de la GUI i fer-lo visible.
+
+El resultat del teu programa hauria de ser la següent GUI:
+
+EN COMENÇAR EL PROGRAMA
+
+code:
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class Dialog3 extends JFrame {
+    public Dialog3() {
+        super("Dialog3 Example");
+        setSize(350, 75);
+        
+        Container c = getContentPane();
+        c.setLayout(new FlowLayout());
+        
+        JButton bt = new JButton("Close Window");
+        bt.addActionListener(new showDialog());
+        
+        c.add(bt);
+    }
+    
+    private class showDialog implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            JButton b = (JButton) e.getSource();
+            int a = JOptionPane.showConfirmDialog(b.getParent(), "Are you sure you want to quit?", "Exit confirmation", JOptionPane.YES_NO_OPTION);
+            if (a == JOptionPane.YES_OPTION) {
+                System.exit(0);
+            }
+        }
+    }
+    
+    public static void main(String[] args) {
+        Dialog3 dialog = new Dialog3();
+        dialog.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        dialog.setVisible(true);
+    }
+}
+
