@@ -1,0 +1,77 @@
+El present exercici consisteix en construir una GUI simple que mostri un dibuix.
+
+Per construir aquesta GUI començarem per importar els següents paquets:
+
+import javax.swing.*;
+
+import java.awt.*;
+
+import java.awt.event.ActionListener;
+
+import java.awt.event.ActionEvent;
+
+A continuació crearem una classe Java de nom Picture que hereti de la classe JPanel. Tot seguit reescriurem el comportament del mètode public void paintComponent( Graphics g ) per tal que faci el següent:
+
+Ha d'establir el color del dibuix a blanc (Color.WHITE).
+Ha de crear un rectangle omplert per dins que comenci a les coordenades x -> 10 i y -> 10, amb unes dimensions de 130 d'amplada i 100 d'alçada.
+Ha d'establir el color del dibuix a verd (Color.GREEN).
+Ha d'assignar com a font del text la font per defecte, en cursiva i amb una mida de 20 (això es pot aconseguir amb la instrucció g.setFont ( new Font ( "", Font.ITALIC, 20 ) ) .
+Finalment, ha de crear una nova cadena de text al dibuix amb el text "CODELEARN" que comenci a la posició x -> 15 i y -> 50.
+Tot seguit crearem una nova classe pública de Java de nom Drawing1 que hereti de la classe JFrame. En aquesta ocasió, la classe no tindrà atributs.
+
+El constructor de la classe no rebrà paràmetres i començarà creant un nou contenidor. A continuació establirà les mides de la finestra  usant com a amplada 150 i com a alçada 150. Seguirà creant un nou objecte de la classe Picture i afegirà aquest objecte al contenidor.
+
+Finalment, cal crear el mètode main per a la classe Drawing1 que s'encarregui de crear un nou objecte de la GUI i fer-lo visible.
+
+code:
+
+import javax.swing.*;
+import java.awt.*;
+
+public class Picture extends JPanel {
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        
+        // Establecer el color del dibujo a blanco
+        g.setColor(Color.WHITE);
+        
+        // Crear un rectángulo relleno blanco
+        g.fillRect(10, 10, 130, 100);
+        
+        // Establecer el color del dibujo a verde
+        g.setColor(Color.GREEN);
+        
+        // Establecer la fuente del texto
+        g.setFont(new Font("", Font.ITALIC, 20));
+        
+        // Dibujar la cadena de texto "CODELEARN"
+        g.drawString("CODELEARN", 15, 50);
+    }
+}
+
+import javax.swing.*;
+
+public class Drawing1 extends JFrame {
+    public Drawing1() {
+        super("Drawing1 Example");
+        
+        // Crear un nuevo contenedor
+        Container c = getContentPane();
+        
+        // Establecer el tamaño de la ventana
+        setSize(150, 150);
+        
+        // Crear un nuevo objeto Picture
+        Picture picture = new Picture();
+        
+        // Agregar el objeto Picture al contenedor
+        c.add(picture);
+    }
+    
+    public static void main(String[] args) {
+        Drawing1 drawing = new Drawing1();
+        drawing.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        drawing.setVisible(true);
+    }
+}
