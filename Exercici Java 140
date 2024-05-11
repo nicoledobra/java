@@ -1,0 +1,214 @@
+El present exercici consisteix en construir una GUI simple que mostri en un dibuix un text llegit per l'entrada i permeti canviar-ne algunes de les propietats.
+
+Per construir aquesta GUI començarem per importar els següents paquets:
+
+import javax.swing.*;
+
+import java.awt.*;
+
+import java.awt.event.ActionListener;
+
+import java.awt.event.ActionEvent;
+
+A continuació crearem una classe Java de nom Picture que hereti de la classe JPanel. Aquesta classe tindrà els següents atributs:
+
+text -> atribut privat de tipus String. Emmagatzemarà el text a mostrar en el dibuix.
+color -> atribut privat de tipus Color. Emmagatzemarà el color per al text.
+size -> atribut privat de tipus int. Emmagatzemarà la mida per al text.
+La classe tindrà un constructor amb un paràmetre de tipus String. Aquest constructor començarà cridant al constructor de la superclasse sense paràmetres i, després, inicialitzarà l'atribut text amb el valor passat com a paràmetre. També inciarà els atributs color i size amb els valors Color.GREEN i 20, respectivament.
+
+Definirem també els següents mètodes:
+
+setText que rebrà un paràmetre de tipus String. Aquest mètode actualitzarà el valor de l'atribut text de la classe i farà també ús del mètode repaint() per tal de redibuixar el component després del canvi de contingut.
+changeColor que rebrà un paràmetre de tipus String. Aquest mètode farà servir un condicional per esbrinar quin color s'ha escollit ("Green", "Red" i "Black") i actualitzar l'atribut color de manera adequada. A continuació caldrà fer servir el mètode repaint().
+changeFontSize que rebrà un paràmetre de tipus String. Aquest mètode farà servir un condicional per esbrinar quina mida s'ha escollit ("10", "20" i "30") i actualitzar l'atribut size de manera adequada. A continuació caldrà fer servir el mètode repaint().
+Tot seguit reescriurem el comportament del mètode public void paintComponent( Graphics g ) per tal que faci el següent:
+
+Ha d'establir el color del dibuix a blanc (Color.WHITE).
+Ha de crear un rectangle omplert per dins que comenci a les coordenades x -> 10 i y -> 10, amb unes dimensions de 130 d'amplada i 100 d'alçada.
+Ha d'establir el color del dibuix al color de l'atribut color.
+Ha d'assignar com a font del text la font per defecte, en cursiva i amb una mida segons el valor de l'atribut size (això es pot aconseguir amb la instrucció g.setFont ( new Font ( "", Font.ITALIC, 20 ) ) .
+Finalment, ha de crear una nova cadena de text al dibuix amb el text que contingui l'atribut de la classe i que comenci a la posició x -> 15 i y -> 50.
+Tot seguit crearem una nova classe pública de Java de nom Drawing3 que hereti de la classe JFrame. En aquesta ocasió, la classe tindrà els següents atributs:
+
+picture -> un atribut privat de tipus Picture.
+cp -> un atribut privat de tipus Container.
+El constructor de la classe no rebrà paràmetres i començarà cridant el constructor de la superclasse passant-li com a text per la finestra "Drawing3 Example". Establirem les mides de la finestra usant com a amplada 160 i com a alçada 200, i assignarem com a acció per defecte en tancar EXIT_ON_CLOSE. A continuació incialitzarem l'atribut contenidor i li assignarem un nou BorderLayout.
+
+Encara dins del constructor, crearem un nou JButton amb el text "Set text" i li assignarem un ActionListener d'una nova classe anomenada InputDialog. Aquest botó l'afegirem al contenidor a NORTH del layout.
+
+També dins del constructor, inicialitzarem l'atribut picture sense text (amb la cadena buida). Afegirem la imatge al contenidor a CENTER del layout.
+
+Continuarem, encara dins del constructor, creant un nou JButton amb el text "Clear text" i li assignarem un ActionListener d'una nova classe anomenada clearText. Aquest botó l'afegirem al contenidor a SOUTH del layout.
+
+Seguirem creant un nou GridLayout de 3 files i 1 columna. Aquest el farem servir per establir el layout de dos nous components JPanel que es diran colors i sizes. Crearem sis botons (3 pel panell colors i 3 pel panell sizes) amb els textos de les imatges d'exemple i els afegirem als panells que toquin. Per als 3 botons de selecció de color, adjuntarem un nou ActionListener d'una nova classe anomenada changeAspect, i per als 3 botos de selecció de mida, adjuntarem un nou ActionListener d'una nova classe anomenada changeSize. Finalment, afegirem el panell colors al contenidor situant-lo a WEST del layout, i afegirem el panell sizes al contenidro situant-lo a EAST del layout.
+
+A continuació caldrà crear una nova classe privada (a dins de la classe Drawing3) de nom InputDialog que implementi la interfície ActionListener. A dins d'aquesta classe reescriurem el mètode actionPerformed de tal manera que recuperem el JButton que ha creat l'event i, tot seguit, es generi un nou diàleg de captura de dades (com el de la imatge del final de l'enunciat). Hem d'emmagatzemar en una nova variable el text capturat mitjançant el diàleg i l'hem de fer servir per actualitzar el valor del text de l'atribut picture de la classe Drawing3.
+
+També farà falta crear una nova classe privada (a dins de la classe Drawing3) de nom clearText que implementi la interfície ActionListener. A dins d'aquesta classe reescriurem el mètode actionPerformed de tal manera que s'encarregui d'actualitzar el text de l'atribut picture de la classe Drawing3 a la cadena buida.
+
+Caldran també dues noves classes privades que també implementin la interfície ActionListener.
+
+La primera d'aquestes classes privades es dirà changeAspect i reescriurà el mètode actionPerformed de tal manera que recuperi el botó que ha generat l'esdeveniment i, tot seguit, farà servir el mètode changeColor de l'atribut picture passant-li com a paràmetre el text del botó (que podem obtenir fent un getText() ).
+
+La segona d'aquestes classes privades es dirà changeSize i reescriurà el mètode actionPerformed de tal manera que recuperi el botó que ha generat l'esdeveniment i, tot seguit, farà servir el mètode changeFontSize de l'atribut picture passant-li com a paràmetre el text del botó (que podem obtenir fent un getText() ).
+
+Finalment, cal crear el mètode main per a la classe Drawing3 que s'encarregui de crear un nou objecte de la GUI i fer-lo visible.
+
+code:
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+class Picture extends JPanel {
+    private String text;
+    private Color color;
+    private int size;
+
+    public Picture(String text) {
+        this.text = text;
+        this.color = Color.GREEN;
+        this.size = 20;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+        repaint();
+    }
+
+    public void changeColor(String color) {
+        switch (color) {
+            case "Green":
+                this.color = Color.GREEN;
+                break;
+            case "Red":
+                this.color = Color.RED;
+                break;
+            case "Black":
+                this.color = Color.BLACK;
+                break;
+        }
+        repaint();
+    }
+
+    public void changeFontSize(String size) {
+        switch (size) {
+            case "10":
+                this.size = 10;
+                break;
+            case "20":
+                this.size = 20;
+                break;
+            case "30":
+                this.size = 30;
+                break;
+        }
+        repaint();
+    }
+
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
+        // Establecer el color del dibujo a blanco
+        g.setColor(Color.WHITE);
+
+        // Crear un rectángulo relleno blanco
+        g.fillRect(10, 10, 130, 100);
+
+        // Establecer el color del dibujo al color actual
+        g.setColor(color);
+
+        // Establecer la fuente del texto con el tamaño actual
+        g.setFont(new Font("", Font.ITALIC, size));
+
+        // Dibujar la cadena de texto
+        g.drawString(text, 15, 50);
+    }
+}
+
+public class Drawing3 extends JFrame {
+    private Picture picture;
+    private Container cp;
+
+    public Drawing3() {
+        super("Drawing3 Example");
+        setSize(160, 200);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        cp = getContentPane();
+        cp.setLayout(new BorderLayout());
+
+        JButton setTextButton = new JButton("Set text");
+        setTextButton.addActionListener(new InputDialog());
+        cp.add(setTextButton, BorderLayout.NORTH);
+
+        picture = new Picture("");
+        cp.add(picture, BorderLayout.CENTER);
+
+        JButton clearTextButton = new JButton("Clear text");
+        clearTextButton.addActionListener(new ClearText());
+        cp.add(clearTextButton, BorderLayout.SOUTH);
+
+        JPanel colors = new JPanel(new GridLayout(3, 1));
+        JButton greenButton = new JButton("Green");
+        greenButton.addActionListener(new ChangeAspect());
+        colors.add(greenButton);
+        JButton redButton = new JButton("Red");
+        redButton.addActionListener(new ChangeAspect());
+        colors.add(redButton);
+        JButton blackButton = new JButton("Black");
+        blackButton.addActionListener(new ChangeAspect());
+        colors.add(blackButton);
+        cp.add(colors, BorderLayout.WEST);
+
+        JPanel sizes = new JPanel(new GridLayout(3, 1));
+        JButton size10Button = new JButton("10");
+        size10Button.addActionListener(new ChangeSize());
+        sizes.add(size10Button);
+        JButton size20Button = new JButton("20");
+        size20Button.addActionListener(new ChangeSize());
+        sizes.add(size20Button);
+        JButton size30Button = new JButton("30");
+        size30Button.addActionListener(new ChangeSize());
+        sizes.add(size30Button);
+        cp.add(sizes, BorderLayout.EAST);
+    }
+
+    private class InputDialog implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            JButton source = (JButton) e.getSource();
+            String newText = JOptionPane.showInputDialog(source.getParent(), "Enter text:");
+            if (newText != null) {
+                picture.setText(newText);
+            }
+        }
+    }
+
+    private class ClearText implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            picture.setText("");
+        }
+    }
+
+    private class ChangeAspect implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            JButton source = (JButton) e.getSource();
+            picture.changeColor(source.getText());
+        }
+    }
+
+    private class ChangeSize implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            JButton source = (JButton) e.getSource();
+            picture.changeFontSize(source.getText());
+        }
+    }
+
+    public static void main(String[] args) {
+        Drawing3 drawing3 = new Drawing3();
+        drawing3.setVisible(true);
+    }
+}
